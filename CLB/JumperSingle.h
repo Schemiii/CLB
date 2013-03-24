@@ -16,6 +16,6 @@
 - init :(NSString*) cid WithInOutSignals : (NSInteger) nion;
 - (SignalEvent*) setPosition : (NSInteger) pos;
 - (NSInteger) getPosition;
++ (NSInteger) POSITION_NONE;
 + (NSInteger) POSITION_LEFT;
-+ (NSInteger) POSITION_RIGHT;
 @end

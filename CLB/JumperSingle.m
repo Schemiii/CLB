@@ -45,7 +45,7 @@
   return 1;
 }
 
-+ (NSInteger)POSITION_RIGHT{
++ (NSInteger)POSITION_NONE{
   return 0;
 }
 

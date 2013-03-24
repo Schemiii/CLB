@@ -49,23 +49,23 @@
 - (void)action{
   [super action];
   
-  [[self.sout objectAtIndex:CLB.INOUT_LEFT] setSignalValue:[[[[inputJumperLeft objectAtIndex:0] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_LEFT+1] setSignalValue:[[[[inputJumperLeft objectAtIndex:1] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_LEFT+2] setSignalValue:[[[[inputJumperLeft objectAtIndex:2] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_LEFT+3] setSignalValue:[[[[inputJumperLeft objectAtIndex:3] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_LEFT+4] setSignalValue:(Byte) 0];
+  [[self.sout objectAtIndex:[CLB INOUT_LEFT]] setSignalValue:[[[[inputJumperLeft objectAtIndex:0] sout] objectAtIndex:1] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_LEFT]+1] setSignalValue:[[[[inputJumperLeft objectAtIndex:1] sout] objectAtIndex:1] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_LEFT]+2] setSignalValue:[[[[inputJumperLeft objectAtIndex:2] sout] objectAtIndex:1] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_LEFT]+3] setSignalValue:[[[[inputJumperLeft objectAtIndex:3] sout] objectAtIndex:1] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_LEFT]+4] setSignalValue:(Byte) 0];
   
-  [[self.sout objectAtIndex:CLB.INOUT_TOP] setSignalValue:[[[[inputJumperTop objectAtIndex:0] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_TOP+1] setSignalValue:[[[[inputJumperTop objectAtIndex:1] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_TOP+2] setSignalValue:[[[[inputJumperTop objectAtIndex:2] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_TOP+3] setSignalValue:[[[[inputJumperTop objectAtIndex:3] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_TOP+4] setSignalValue:(Byte)0];
+  [[self.sout objectAtIndex:[CLB INOUT_TOP]] setSignalValue:[[[[inputJumperTop objectAtIndex:0] sout] objectAtIndex:1] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_TOP]+1 ] setSignalValue:[[[[inputJumperTop objectAtIndex:1] sout] objectAtIndex:1] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_TOP]+2] setSignalValue:[[[[inputJumperTop objectAtIndex:2] sout] objectAtIndex:1] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_TOP]+3] setSignalValue:[[[[inputJumperTop objectAtIndex:3] sout] objectAtIndex:1] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_TOP]+4] setSignalValue:(Byte)0];
   
-  [[self.sout objectAtIndex:CLB.INOUT_RIGHT] setSignalValue:[[[[dip objectAtIndex:0] sout] objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_RIGHT+1] setSignalValue:[[[[dip objectAtIndex:1] sout] objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_RIGHT+2] setSignalValue:[[orGateX.sout objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_RIGHT+3] setSignalValue:[[orGateY.sout objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_RIGHT+4] setSignalValue:[[jumperClockSelect.sout objectAtIndex:0] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_RIGHT]] setSignalValue:[[[[dip objectAtIndex:0] sout] objectAtIndex:0] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_RIGHT]+1] setSignalValue:[[[[dip objectAtIndex:1] sout] objectAtIndex:0] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_RIGHT]+2] setSignalValue:[[orGateX.sout objectAtIndex:0] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_RIGHT]+3] setSignalValue:[[orGateY.sout objectAtIndex:0] getSignalValue]];
+  [[self.sout objectAtIndex:[CLB INOUT_RIGHT ]+4] setSignalValue:[[jumperClockSelect.sout objectAtIndex:0] getSignalValue]];
   
   [[self.sout objectAtIndex:CLB.INOUT_BOTTOM] setSignalValue:[[[[dip objectAtIndex:2] sout] objectAtIndex:0] getSignalValue]];
   [[self.sout objectAtIndex:CLB.INOUT_BOTTOM+1] setSignalValue:[[[[dip objectAtIndex:3] sout] objectAtIndex:0] getSignalValue]];
@@ -147,117 +147,221 @@
 - (void)connectInnerComponents{
   SignalEventQueue *schedule = self.schedule;
   
-  [schedule insertSignalEvent:[self forwardComponent:[inputJumperLeft objectAtIndex:0] ToConnection:CLB.INOUT_LEFT+2 WithComponentConnection:0]];
-  [schedule insertSignalEvent:[self forwardComponent:[inputJumperLeft objectAtIndex:1] ToConnection:CLB.INOUT_LEFT+3 WithComponentConnection:0]];
-  [schedule insertSignalEvent:[self forwardComponent:[inputJumperLeft objectAtIndex:2] ToConnection:CLB.INOUT_LEFT WithComponentConnection:0]];
-  [schedule insertSignalEvent:[self forwardComponent:[inputJumperLeft objectAtIndex:3] ToConnection:CLB.INOUT_LEFT+1 WithComponentConnection:0]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:[inputJumperLeft objectAtIndex:0] ToConnection:[CLB INOUT_LEFT]+2 WithComponentConnection:0]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:[inputJumperLeft objectAtIndex:1] ToConnection:[CLB INOUT_LEFT]+3 WithComponentConnection:0]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:[inputJumperLeft objectAtIndex:2] ToConnection:[CLB INOUT_LEFT] WithComponentConnection:0]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:[inputJumperLeft objectAtIndex:3] ToConnection:[CLB INOUT_LEFT]+1 WithComponentConnection:0]];
   
-  [schedule insertSignalEvent:[self forwardComponent:[inputJumperTop objectAtIndex:0] ToConnection:CLB.INOUT_TOP+2 WithComponentConnection:0]];
-  [schedule insertSignalEvent:[self forwardComponent:[inputJumperTop objectAtIndex:1] ToConnection:CLB.INOUT_TOP+3 WithComponentConnection:0]];
-  [schedule insertSignalEvent:[self forwardComponent:[inputJumperTop objectAtIndex:2] ToConnection:CLB.INOUT_TOP WithComponentConnection:0]];
-  [schedule insertSignalEvent:[self forwardComponent:[inputJumperTop objectAtIndex:3] ToConnection:CLB.INOUT_TOP+1 WithComponentConnection:0]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:[inputJumperTop objectAtIndex:0] ToConnection:[CLB INOUT_TOP]+2 WithComponentConnection:0]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:[inputJumperTop objectAtIndex:1] ToConnection:[CLB INOUT_TOP ]+3 WithComponentConnection:0]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:[inputJumperTop objectAtIndex:2] ToConnection:[CLB INOUT_TOP]WithComponentConnection:0]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:[inputJumperTop objectAtIndex:3] ToConnection:[CLB INOUT_TOP]+1 WithComponentConnection:0]];
   
   //Preparation of A
-  [schedule insertSignalEvent:[[inputJumperLeft objectAtIndex:0] connectConnectionWithConnectionOfComponent:[inputOr objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[dip objectAtIndex:0] connectConnectionWithConnectionOfComponent:[inputOr objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[self forwardComponent:[inputOr objectAtIndex:0] ToConnection:[CLB INOUT_RIGHT]+2 WithComponentConnection:2]];
+  [schedule insertSignalEvent:
+   [[inputJumperLeft objectAtIndex:0] connectConnectionWithConnectionOfComponent:
+    [inputOr objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[dip objectAtIndex:0] connectConnectionWithConnectionOfComponent:
+    [inputOr objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:[inputOr objectAtIndex:0] ToConnection:[CLB INOUT_RIGHT]+2 WithComponentConnection:2]];
   
-  [schedule insertSignalEvent:[[inputOr objectAtIndex:0]connectConnectionWithConnectionOfComponent:[inputMultiplier objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[inputOr objectAtIndex:0] connectConnectionWithConnectionOfComponent:
+    [inputMultiplier objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
   
   //Preparation of B
-  [schedule insertSignalEvent:[[inputJumperLeft objectAtIndex:1]connectConnectionWithConnectionOfComponent:[inputOr objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[dip objectAtIndex:1]connectConnectionWithConnectionOfComponent:[inputOr objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[self forwardComponent:[inputOr objectAtIndex:1] ToConnection:[CLB INOUT_RIGHT]+3 WithComponentConnection:2]];
+  [schedule insertSignalEvent:
+   [[inputJumperLeft objectAtIndex:1]connectConnectionWithConnectionOfComponent:
+    [inputOr objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[dip objectAtIndex:1]connectConnectionWithConnectionOfComponent:
+    [inputOr objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:[inputOr objectAtIndex:1] ToConnection:[CLB INOUT_RIGHT]+3 WithComponentConnection:2]];
   
-  [schedule insertSignalEvent:[[inputOr objectAtIndex:1]connectConnectionWithConnectionOfComponent:[inputMultiplier objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[inputOr objectAtIndex:1]connectConnectionWithConnectionOfComponent:[inputMultiplier objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
    
    //Preparation of C
-   [schedule insertSignalEvent:[[inputJumperTop objectAtIndex:0]connectConnectionWithConnectionOfComponent:[inputOr objectAtIndex:2] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-   [schedule insertSignalEvent:[[dip objectAtIndex:2]connectConnectionWithConnectionOfComponent:[jumperFeedback objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-   [schedule insertSignalEvent:[ [jumperFeedback objectAtIndex:0]connectConnectionWithConnectionOfComponent:[inputOr objectAtIndex:2] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
-   [schedule insertSignalEvent:[self forwardComponent:[inputOr objectAtIndex:2] ToConnection:CLB.INOUT_BOTTOM +2 WithComponentConnection:2]];
+   [schedule insertSignalEvent:
+    [[inputJumperTop objectAtIndex:0]connectConnectionWithConnectionOfComponent:
+     [inputOr objectAtIndex:2] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+   [schedule insertSignalEvent:
+    [[dip objectAtIndex:2]connectConnectionWithConnectionOfComponent:
+     [jumperFeedback objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+   [schedule insertSignalEvent:
+    [[jumperFeedback objectAtIndex:0]connectConnectionWithConnectionOfComponent:
+     [inputOr objectAtIndex:2] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+   [schedule insertSignalEvent:
+    [self forwardComponent:[inputOr objectAtIndex:2] ToConnection:[CLB INOUT_BOTTOM ] +2 WithComponentConnection:2]];
   
+  [schedule insertSignalEvent:
+   [[inputOr objectAtIndex:2] connectConnectionWithConnectionOfComponent:
+    [inputMultiplier objectAtIndex:2] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+   
   //Preparation of D
-  [schedule insertSignalEvent:[[inputJumperTop objectAtIndex:1]connectConnectionWithConnectionOfComponent:[inputOr objectAtIndex:3] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[dip objectAtIndex:3]connectConnectionWithConnectionOfComponent:[jumperFeedback objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[jumperFeedback objectAtIndex:1]connectConnectionWithConnectionOfComponent:[inputOr objectAtIndex:3] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+   
+  [schedule insertSignalEvent:
+   [[inputJumperTop objectAtIndex:1]connectConnectionWithConnectionOfComponent:
+    [inputOr objectAtIndex:3] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[dip objectAtIndex:3]connectConnectionWithConnectionOfComponent:[jumperFeedback objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[jumperFeedback objectAtIndex:1]connectConnectionWithConnectionOfComponent:[inputOr objectAtIndex:3] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
   [schedule insertSignalEvent:[self forwardComponent:[inputOr objectAtIndex:3] ToConnection:[CLB INOUT_BOTTOM]+3 WithComponentConnection:2]];
   
-  [schedule insertSignalEvent:[[inputOr objectAtIndex:3]connectConnectionWithConnectionOfComponent:[inputMultiplier objectAtIndex:3] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[inputOr objectAtIndex:3]connectConnectionWithConnectionOfComponent:[inputMultiplier objectAtIndex:3] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+   
   for (int i=0; i<4; i++) {
     [schedule insertSignalEvent:[[inputMultiplier objectAtIndex:i]connectConnectionWithConnectionOfComponent:jumperF1 WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:i]];
-    [schedule insertSignalEvent:[[inputMultiplier objectAtIndex:i]connectConnectionWithConnectionOfComponent:jumperF1 WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:i]];
+    [schedule insertSignalEvent:[[inputMultiplier objectAtIndex:i]connectConnectionWithConnectionOfComponent:jumperF2 WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:i]];
   }
   
-  [schedule insertSignalEvent:[[dip objectAtIndex:0]connectConnectionWithConnectionOfComponent:[inputJumperLeft objectAtIndex:0] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[[dip objectAtIndex:1]connectConnectionWithConnectionOfComponent:[inputJumperLeft objectAtIndex:1] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[[dip objectAtIndex:2]connectConnectionWithConnectionOfComponent:[inputJumperTop objectAtIndex:0] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[[dip objectAtIndex:3]connectConnectionWithConnectionOfComponent:[inputJumperTop objectAtIndex:1] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [[dip objectAtIndex:0]connectConnectionWithConnectionOfComponent:
+    [inputJumperLeft objectAtIndex:0] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [[dip objectAtIndex:1]connectConnectionWithConnectionOfComponent:
+    [inputJumperLeft objectAtIndex:1] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [[dip objectAtIndex:2]connectConnectionWithConnectionOfComponent:
+    [inputJumperTop objectAtIndex:0] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [[dip objectAtIndex:3]connectConnectionWithConnectionOfComponent:
+    [inputJumperTop objectAtIndex:1] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
   
-  [schedule insertSignalEvent:[jumperF1 connectConnectionWithConnectionOfComponent:[multiplierF1F2 objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[jumperF2 connectConnectionWithConnectionOfComponent:[multiplierF1F2 objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [jumperF1 connectConnectionWithConnectionOfComponent:[multiplierF1F2 objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [jumperF2 connectConnectionWithConnectionOfComponent:[multiplierF1F2 objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
   
-  [schedule insertSignalEvent:[[multiplierF1F2 objectAtIndex:0]connectConnectionWithConnectionOfComponent:[jumperSynchronicity objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[[multiplierF1F2 objectAtIndex:0]connectConnectionWithConnectionOfComponent:[flipFlops objectAtIndex:0] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[flipFlops objectAtIndex:0]connectConnectionWithConnectionOfComponent:[jumperSynchronicity objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[multiplierF1F2 objectAtIndex:1]connectConnectionWithConnectionOfComponent:[jumperSynchronicity objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[[multiplierF1F2 objectAtIndex:1]connectConnectionWithConnectionOfComponent:[flipFlops objectAtIndex:1] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[flipFlops objectAtIndex:1]connectConnectionWithConnectionOfComponent:[jumperSynchronicity objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[jumperSynchronicity objectAtIndex:0] connectConnectionWithConnectionOfComponent:[multiplierF1F2Synced objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[jumperSynchronicity objectAtIndex:1] connectConnectionWithConnectionOfComponent:[multiplierF1F2Synced objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[multiplierF1F2 objectAtIndex:0]connectConnectionWithConnectionOfComponent:
+    [jumperSynchronicity objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+    [[multiplierF1F2 objectAtIndex:0]connectConnectionWithConnectionOfComponent:
+     [flipFlops objectAtIndex:0] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:0]];
+  
+  [schedule insertSignalEvent:
+   [[flipFlops objectAtIndex:0]connectConnectionWithConnectionOfComponent:
+    [jumperSynchronicity objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[multiplierF1F2 objectAtIndex:1]connectConnectionWithConnectionOfComponent:
+    [jumperSynchronicity objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [[multiplierF1F2 objectAtIndex:1]connectConnectionWithConnectionOfComponent:
+    [flipFlops objectAtIndex:1] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:0]];
+  
+   [schedule insertSignalEvent:
+    [[flipFlops objectAtIndex:1]connectConnectionWithConnectionOfComponent:[jumperSynchronicity objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[jumperSynchronicity objectAtIndex:0] connectConnectionWithConnectionOfComponent:[multiplierF1F2Synced objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  
+  [schedule insertSignalEvent:
+   [[jumperSynchronicity objectAtIndex:1] connectConnectionWithConnectionOfComponent:[multiplierF1F2Synced objectAtIndex:1] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
   
   for (int i=0; i<2; i++) {
-    [schedule insertSignalEvent:[[multiplierF1F2Synced objectAtIndex:i] connectConnectionWithConnectionOfComponent:jumperX WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:i]];
-    [schedule insertSignalEvent:[[multiplierF1F2Synced objectAtIndex:i] connectConnectionWithConnectionOfComponent:jumperY WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:i]];
+    [schedule insertSignalEvent:
+     [[multiplierF1F2Synced objectAtIndex:i] connectConnectionWithConnectionOfComponent:jumperX WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:i]];
+    [schedule insertSignalEvent:
+     [[multiplierF1F2Synced objectAtIndex:i] connectConnectionWithConnectionOfComponent:jumperY WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:i]];
   }
   
-  [schedule insertSignalEvent:[[multiplierF1F2Synced objectAtIndex:0] connectConnectionWithConnectionOfComponent:[jumperFeedback objectAtIndex:0] WithSignalIndexOfCallingComponent:2 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[[multiplierF1F2Synced objectAtIndex:1] connectConnectionWithConnectionOfComponent:[jumperFeedback objectAtIndex:1] WithSignalIndexOfCallingComponent:2 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [[multiplierF1F2Synced objectAtIndex:0] connectConnectionWithConnectionOfComponent:
+    [jumperFeedback objectAtIndex:0] WithSignalIndexOfCallingComponent:2 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [[multiplierF1F2Synced objectAtIndex:1] connectConnectionWithConnectionOfComponent:
+    [jumperFeedback objectAtIndex:1] WithSignalIndexOfCallingComponent:2 AndSignalIndexToConnectWith:1]];
   
   //Unify signal of X consisting of Fx, A signal of left and right CLB
   //and C signal of top and bottom signal
   
-  [schedule insertSignalEvent:[jumperX connectConnectionWithConnectionOfComponent:orGateX WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[inputJumperLeft objectAtIndex:2]connectConnectionWithConnectionOfComponent:orGateX WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[[inputJumperTop objectAtIndex:2]connectConnectionWithConnectionOfComponent:orGateX WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:2]];
-  [schedule insertSignalEvent:[self forwardComponent:orGateX ToConnection:[CLB INOUT_RIGHT] WithComponentConnection:3]];
-  [schedule insertSignalEvent:[self forwardComponent:orGateX ToConnection:[CLB INOUT_BOTTOM] WithComponentConnection:4]];
+  [schedule insertSignalEvent:
+   [jumperX connectConnectionWithConnectionOfComponent:orGateX WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[inputJumperLeft objectAtIndex:2]connectConnectionWithConnectionOfComponent:orGateX WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [[inputJumperTop objectAtIndex:2]connectConnectionWithConnectionOfComponent:orGateX WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:2]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:orGateX ToConnection:[CLB INOUT_RIGHT] WithComponentConnection:3]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:orGateX ToConnection:[CLB INOUT_BOTTOM] WithComponentConnection:4]];
   
-  [schedule insertSignalEvent:[orGateX connectConnectionWithConnectionOfComponent:multiplierX WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[multiplierX connectConnectionWithConnectionOfComponent:[inputJumperLeft objectAtIndex:2] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[multiplierX connectConnectionWithConnectionOfComponent:[inputJumperTop objectAtIndex:2] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [orGateX connectConnectionWithConnectionOfComponent:multiplierX WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [multiplierX connectConnectionWithConnectionOfComponent:
+    [inputJumperLeft objectAtIndex:2] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [multiplierX connectConnectionWithConnectionOfComponent:
+    [inputJumperTop objectAtIndex:2] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
   
   //Unify signal of Y consisting of Fy, B signal of left and right CLB
   // and D signal of top and bottom signal
   
-  [schedule insertSignalEvent:[jumperY connectConnectionWithConnectionOfComponent:orGateY WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[[inputJumperLeft objectAtIndex:3] connectConnectionWithConnectionOfComponent:orGateY WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[[inputJumperTop objectAtIndex:3] connectConnectionWithConnectionOfComponent:orGateY WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:2]];
-  [schedule insertSignalEvent:[self forwardComponent:orGateY ToConnection:[CLB INOUT_RIGHT]+1 WithComponentConnection:3]];
-  [schedule insertSignalEvent:[self forwardComponent:orGateY ToConnection:[CLB INOUT_BOTTOM]+1 WithComponentConnection:4]];
+  [schedule insertSignalEvent:
+   [jumperY connectConnectionWithConnectionOfComponent:orGateY WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [[inputJumperLeft objectAtIndex:3] connectConnectionWithConnectionOfComponent:orGateY WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [[inputJumperTop objectAtIndex:3] connectConnectionWithConnectionOfComponent:orGateY WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:2]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:orGateY ToConnection:[CLB INOUT_RIGHT]+1 WithComponentConnection:3]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:orGateY ToConnection:[CLB INOUT_BOTTOM]+1 WithComponentConnection:4]];
   
-  [schedule insertSignalEvent:[orGateY connectConnectionWithConnectionOfComponent:multiplierY WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[multiplierY connectConnectionWithConnectionOfComponent:[inputJumperLeft objectAtIndex:3] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
-  [schedule insertSignalEvent:[multiplierY connectConnectionWithConnectionOfComponent:[inputJumperTop objectAtIndex:3] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [orGateY connectConnectionWithConnectionOfComponent:multiplierY WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [multiplierY connectConnectionWithConnectionOfComponent:
+    [inputJumperLeft objectAtIndex:3] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [multiplierY connectConnectionWithConnectionOfComponent:
+    [inputJumperTop objectAtIndex:3] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
   
-  [schedule insertSignalEvent:[clockAutomatic connectConnectionWithConnectionOfComponent:jumperClockModeSelect WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[clockButton connectConnectionWithConnectionOfComponent:jumperClockModeSelect WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
-  [schedule insertSignalEvent:[jumperClockModeSelect connectConnectionWithConnectionOfComponent:jumperClockSelect WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [clockAutomatic connectConnectionWithConnectionOfComponent:jumperClockModeSelect WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [clockButton connectConnectionWithConnectionOfComponent:jumperClockModeSelect WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [jumperClockModeSelect connectConnectionWithConnectionOfComponent:jumperClockSelect WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
   
-  //[schedule insertSignalEvents:[self forwardComponent:externClockOr ToConnections:[NSArray arrayWithObjects:[NSNumber numberWithInt:4],[NSNumber numberWithInt:9],[NSNumber numberWithInt:14],[NSNumber numberWithInt:19], nil] WithComponentConnections:[NSArray arrayWithObjects:[NSNumber numberWithInt:0],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3], nil]]];
-  [schedule insertSignalEvent:[self forwardComponent:externClockOr ToConnection:4 WithComponentConnection:0]];
-  [schedule insertSignalEvent:[self forwardComponent:externClockOr ToConnection:9 WithComponentConnection:1]];
-  [schedule insertSignalEvent:[self forwardComponent:externClockOr ToConnection:14 WithComponentConnection:2]];
-  [schedule insertSignalEvent:[self forwardComponent:externClockOr ToConnection:19 WithComponentConnection:3]];
+  //Right this way?
+  [schedule insertSignalEvent:
+   [self forwardComponent:externClockOr ToConnection:4 WithComponentConnection:0]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:externClockOr ToConnection:9 WithComponentConnection:1]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:externClockOr ToConnection:14 WithComponentConnection:2]];
+  [schedule insertSignalEvent:
+   [self forwardComponent:externClockOr ToConnection:19 WithComponentConnection:3]];
   
   
-  [schedule insertSignalEvent:[externClockOr connectConnectionWithConnectionOfComponent:jumperClockSelect WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [externClockOr connectConnectionWithConnectionOfComponent:jumperClockSelect WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
   
-  [schedule insertSignalEvent:[jumperClockSelect connectConnectionWithConnectionOfComponent:clockMultiplier WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
+  [schedule insertSignalEvent:
+   [jumperClockSelect connectConnectionWithConnectionOfComponent:clockMultiplier WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:0]];
   
-  [schedule insertSignalEvent:[clockMultiplier connectConnectionWithConnectionOfComponent:[flipFlops objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [clockMultiplier connectConnectionWithConnectionOfComponent:
+    [flipFlops objectAtIndex:0] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:1]];
   
-  [schedule insertSignalEvent:[clockMultiplier connectConnectionWithConnectionOfComponent:[flipFlops objectAtIndex:1] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
+  [schedule insertSignalEvent:
+   [clockMultiplier connectConnectionWithConnectionOfComponent:
+    [flipFlops objectAtIndex:1] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
 }
 - (void)initialize{
   
@@ -376,10 +480,10 @@
 + (NSInteger)INOUT_LEFT{
   return 0;
 }
-+ (NSInteger)INOUT_RIGHT{
++ (NSInteger)INOUT_TOP{
   return 5;
 }
-+ (NSInteger)INOUT_TOP{
++ (NSInteger)INOUT_RIGHT{
   return 10;
 }
 + (NSInteger)INOUT_BOTTOM{

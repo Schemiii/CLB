@@ -14,5 +14,5 @@
 - (id) initWithName:(NSString *)name AndOutSignal:(NSInteger)outsig;
 
 - (NSArray*) setInputWithIndex : (NSInteger) idx AndValue :(Byte) val;
-- (NSArray*) setInputWithIndices:(NSArray*)  idx AndValues:(NSArray*)vals;
+
 @end

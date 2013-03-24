@@ -18,7 +18,7 @@
   @property (readwrite) NSInteger rows,columns;
 @end
 @implementation JumperMatrix
-
+@synthesize rows=_rows,columns=_columns,inputSplitter=_inputSplitter,jumpers=_jumpers;
 - (id)initWithInCount:(NSInteger)inCount AndRows:(NSInteger)nrow AndColumns:(NSInteger)ncol{
   self = [super init:@"" withInSignals:inCount AndOutSignals:1];
   if(self){
@@ -77,9 +77,12 @@
   
   for (int i=0; i<_rows; i++) {
     for(int j=0;j<_columns;j++){
+    
       [self.schedule insertSignalEvents:
        [[self.inputSplitter objectAtIndex:j]connectConnectionsWithConnectionsOfComponent: [[self.jumpers objectAtIndex:i] objectAtIndex:j] WithSignalIndexesOfCallingComponent:[[NSArray alloc]initWithObjects:[[NSNumber alloc]initWithInt:i*2],[[NSNumber alloc]initWithInt:i*2+1], nil] AndSignalIndexesToConnectWith:[[NSArray alloc]initWithObjects:[[NSNumber alloc]initWithInt:0],[[NSNumber alloc]initWithInt:1], nil]]];
-    }
+    
+      [self.schedule insertSignalEvent:[[[_jumpers objectAtIndex:i] objectAtIndex:j] connectConnectionWithConnectionOfComponent:[_rowAnd objectAtIndex:i] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:j]];
+      }
   }
   for (int i=0;i<[self.rowAnd count];i++){
     [self.schedule insertSignalEvent:[[self.rowAnd objectAtIndex:i] connectConnectionWithConnectionOfComponent:self.rowsOr WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:i]];

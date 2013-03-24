@@ -26,12 +26,13 @@
     _sin=[[NSMutableArray alloc] initWithCapacity:nin];
     _influences=[[NSMutableArray alloc] initWithCapacity:nout];
     //Fill with "Off"-Signal Objects
+    for (int i=0; i<nin; i++){
+      [_sin insertObject:[[Signal alloc] init:0] atIndex:i];
+    }
     for (int i=0; i<nout; i++){
       [_sout insertObject:[[Signal alloc] init:0] atIndex:i];
       [_influences insertObject:[[Connection alloc]initWithComponent:self AndComponent:nil WithOutSignals:i AndInSignals:-1] atIndex:i];
     }
-    for (int i=0; i<nin; i++)
-      [_sin insertObject:[[Signal alloc] init:0] atIndex:i];
     _maxUpdates=1000;
     _currentUpdates=0;
   }
@@ -49,12 +50,14 @@
   [[_influences objectAtIndex:outidx] reconnectToComponent:component WithInSignals:inidx];
   return [[SignalEvent alloc] init:[_influences objectAtIndex:outidx]];
 }
+
 - (NSMutableArray*) connectConnectionsWithConnectionsOfComponent : (Component*) component
                              WithSignalIndexesOfCallingComponent : (NSArray*) outidxs AndSignalIndexesToConnectWith : (NSArray*) inidxs{
   NSMutableArray *sigevts = [[NSMutableArray alloc] initWithCapacity:[outidxs count]];
-  for (int i=0; i<[sigevts count]; i++) {
-    [[_influences objectAtIndex:(NSInteger)[outidxs objectAtIndex:i]] reconnectToComponent:component WithInSignals:(NSInteger)[inidxs objectAtIndex:i]];
-    [sigevts insertObject:[[SignalEvent alloc]init:[_influences objectAtIndex:(NSUInteger)[outidxs objectAtIndex:i]]] atIndex:i];
+  
+  for (int i=0; i<[outidxs count]; i++) {
+    [[_influences objectAtIndex:[[outidxs objectAtIndex:i]intValue]] reconnectToComponent:component WithInSignals:[[inidxs objectAtIndex:i]intValue]];
+    [sigevts insertObject:[[SignalEvent alloc]init:[_influences objectAtIndex:[[outidxs objectAtIndex:i]intValue]]] atIndex:i];
   }
   return sigevts;
 }
@@ -104,8 +107,9 @@
 }
 - (NSMutableArray *)getInfluencesEvents{
   NSMutableArray *arr=[[NSMutableArray alloc] initWithCapacity:[_sout count]];
-  for (int i=0; i<[_sout count]; i++)
+  for (int i=0; i<[_sout count]; i++){
     [arr insertObject:[[SignalEvent alloc]init:[_influences objectAtIndex:i]] atIndex:i];
+  }
   return arr;
 }
 @end

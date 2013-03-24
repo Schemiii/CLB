@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DED3BF0A16FEF9FF0097040C /* DipView.m in Sources */ = {isa = PBXBuildFile; fileRef = DED3BF0916FEF9FF0097040C /* DipView.m */; };
+		DED3BF0D16FEFA0E0097040C /* DipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DED3BF0C16FEFA0E0097040C /* DipViewController.m */; };
+		DED3BF0F16FEFF0B0097040C /* DIPSwitch.png in Resources */ = {isa = PBXBuildFile; fileRef = DED3BF0E16FEFF0B0097040C /* DIPSwitch.png */; };
 		DEE6959D16F9C27400CF86F7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE6959C16F9C27400CF86F7 /* UIKit.framework */; };
 		DEE6959F16F9C27400CF86F7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE6959E16F9C27400CF86F7 /* Foundation.framework */; };
 		DEE695A116F9C27400CF86F7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE695A016F9C27400CF86F7 /* CoreGraphics.framework */; };
@@ -42,6 +45,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DED3BF0816FEF9FF0097040C /* DipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DipView.h; sourceTree = "<group>"; };
+		DED3BF0916FEF9FF0097040C /* DipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DipView.m; sourceTree = "<group>"; };
+		DED3BF0B16FEFA0E0097040C /* DipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DipViewController.h; sourceTree = "<group>"; };
+		DED3BF0C16FEFA0E0097040C /* DipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DipViewController.m; sourceTree = "<group>"; };
+		DED3BF0E16FEFF0B0097040C /* DIPSwitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DIPSwitch.png; sourceTree = "<group>"; };
 		DEE6959916F9C27400CF86F7 /* CLB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CLB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE6959C16F9C27400CF86F7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DEE6959E16F9C27400CF86F7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -116,6 +124,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DED3BF1016FEFF120097040C /* Pic */ = {
+			isa = PBXGroup;
+			children = (
+				DED3BF0E16FEFF0B0097040C /* DIPSwitch.png */,
+			);
+			name = Pic;
+			sourceTree = "<group>";
+		};
 		DEE6959016F9C27400CF86F7 = {
 			isa = PBXGroup;
 			children = (
@@ -146,12 +162,17 @@
 		DEE695A216F9C27400CF86F7 /* CLB */ = {
 			isa = PBXGroup;
 			children = (
+				DED3BF1016FEFF120097040C /* Pic */,
 				DEE695BF16F9C28B00CF86F7 /* Model */,
 				DEE695AB16F9C27400CF86F7 /* AppDelegate.h */,
 				DEE695AC16F9C27400CF86F7 /* AppDelegate.m */,
 				DEE695B416F9C27400CF86F7 /* MainStoryboard.storyboard */,
 				DEE695B716F9C27400CF86F7 /* ViewController.h */,
 				DEE695B816F9C27400CF86F7 /* ViewController.m */,
+				DED3BF0816FEF9FF0097040C /* DipView.h */,
+				DED3BF0916FEF9FF0097040C /* DipView.m */,
+				DED3BF0B16FEFA0E0097040C /* DipViewController.h */,
+				DED3BF0C16FEFA0E0097040C /* DipViewController.m */,
 				DEE695A316F9C27400CF86F7 /* Supporting Files */,
 			);
 			path = CLB;
@@ -208,8 +229,8 @@
 				DEE695E216F9C29A00CF86F7 /* SignalEvent.m */,
 				DEE695E316F9C29A00CF86F7 /* SignalEventQueue.h */,
 				DEE695E416F9C29A00CF86F7 /* SignalEventQueue.m */,
-				DEE695E516F9C29A00CF86F7 /* SignalInverter.h */,
 				DEE695E616F9C29A00CF86F7 /* SignalInverter.m */,
+				DEE695E516F9C29A00CF86F7 /* SignalInverter.h */,
 				DEE695E716F9C29A00CF86F7 /* SignalMultiplier.h */,
 				DEE695E816F9C29A00CF86F7 /* SignalMultiplier.m */,
 				DEE695E916F9C29A00CF86F7 /* SignalSplitter.h */,
@@ -276,6 +297,7 @@
 				DEE695B116F9C27400CF86F7 /* Default@2x.png in Resources */,
 				DEE695B316F9C27400CF86F7 /* Default-568h@2x.png in Resources */,
 				DEE695B616F9C27400CF86F7 /* MainStoryboard.storyboard in Resources */,
+				DED3BF0F16FEFF0B0097040C /* DIPSwitch.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +332,8 @@
 				DEE6960016F9C29A00CF86F7 /* SignalMultiplier.m in Sources */,
 				DEE6960116F9C29A00CF86F7 /* SignalSplitter.m in Sources */,
 				DEE6960216F9C29A00CF86F7 /* XOrGate.m in Sources */,
+				DED3BF0A16FEF9FF0097040C /* DipView.m in Sources */,
+				DED3BF0D16FEFA0E0097040C /* DipViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +456,7 @@
 				DEE695BE16F9C27400CF86F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

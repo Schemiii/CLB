@@ -42,10 +42,10 @@
   value=1;
 }
 - (void)setOff{
-  value=-1;
+  value=0;
 }
 - (Byte)getInvertedSignalValue{
-  return 1-value;
+  return (Byte)1-value;
 }
 - (Byte)getSignalValue{
   return value;

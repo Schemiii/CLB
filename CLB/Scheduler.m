@@ -52,7 +52,6 @@
 }
 
 - (void)handleSchedule{
-  NSLog(@"There are currently %d elements in the list",[self.schedule count]);
   while(![schedule isEmpty]){
     self.current = [self.schedule remove];
     

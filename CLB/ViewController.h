@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DipViewController.h"
+
 @class CLB;
 @class Scheduler;
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UINavigationControllerDelegate,DipDelegate>
 @property (nonatomic) CLB *clb;
-- (IBAction)GetASignal:(id)sender;
-- (IBAction)getASignal:(id)sender;
-- (IBAction)schedule:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextField *signalA;
+
+- (IBAction)debug:(id)sender;
 @property (nonatomic) Scheduler *schedule;
 @end

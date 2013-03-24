@@ -17,6 +17,7 @@
     _to=to;
     _sout = nsout;
     _sin = nsin;
+    _forwarding=NO;
   }
   return self;
 }

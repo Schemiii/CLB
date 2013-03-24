@@ -45,16 +45,6 @@
   }
   return sigevts;
 }
-//This kind of implementation is dirty..
-- (NSArray *)setInputWithIndices:(NSArray *)idx AndValues:(NSArray *)vals{
-  for (int i=0; i<[idx count]; i++) {
-    [[self.sin objectAtIndex:(NSInteger)[idx objectAtIndex:i]] setSignalValue:(Byte)[vals objectAtIndex:i]];
-  }
-  NSMutableArray* evts = [[NSMutableArray alloc] initWithCapacity:[self.sout count]];
-  for (int i=0; i<[self.sout count]; i++) {
-    [evts insertObject:[[SignalEvent alloc] init:[self.influences objectAtIndex:i]] atIndex:i];
-  }
-  return evts;
-}
+
 
 @end

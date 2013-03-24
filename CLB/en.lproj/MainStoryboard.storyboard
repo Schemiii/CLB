@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -9,15 +9,14 @@
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="568" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z99-ux-qd4">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="106" id="RAj-cn-R3y"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jNB-6F-tI1">
+                                <rect key="frame" x="20" y="237" width="73" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Set A Signal">
+                                <state key="normal" title="DIP">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -25,22 +24,14 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="GetASignal:" destination="2" eventType="touchUpInside" id="ahz-z6-bgM"/>
+                                    <segue destination="bnK-HP-Rpw" kind="modal" identifier="ShowDip" id="AWa-LT-F1A"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cbn-N6-7SR">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="nAu-RG-cZE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yW-7R-BID">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="116" id="USy-VD-y5C"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ghc-Pn-sKQ">
+                                <rect key="frame" x="256" y="110" width="73" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Schedule">
+                                <state key="normal" title="Button">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -48,57 +39,260 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="schedule:" destination="2" eventType="touchUpInside" id="Dno-tc-2WP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="986-AV-RmT">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="122" id="6E1-0V-8TU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Get A Signal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="getASignal:" destination="2" eventType="touchUpInside" id="ZwM-hD-30p"/>
+                                    <action selector="debug:" destination="2" eventType="touchUpInside" id="PRT-Yt-gUt"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="986-AV-RmT" firstAttribute="centerX" secondItem="2yW-7R-BID" secondAttribute="centerX" type="default" id="2hD-rF-zk8"/>
-                            <constraint firstItem="z99-ux-qd4" firstAttribute="top" secondItem="Cbn-N6-7SR" secondAttribute="top" type="default" id="5NL-ic-zmb"/>
-                            <constraint firstItem="986-AV-RmT" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="143" id="5fm-KC-CqO"/>
-                            <constraint firstItem="2yW-7R-BID" firstAttribute="top" secondItem="3" secondAttribute="top" constant="259" id="RVD-le-yGB"/>
-                            <constraint firstItem="Cbn-N6-7SR" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="37" id="SgN-mf-rJ1"/>
-                            <constraint firstItem="z99-ux-qd4" firstAttribute="centerX" secondItem="2yW-7R-BID" secondAttribute="centerX" type="default" id="eRa-kw-aUY"/>
-                            <constraint firstAttribute="bottom" secondItem="986-AV-RmT" secondAttribute="bottom" constant="183" id="yso-xs-4ht"/>
-                            <constraint firstItem="Cbn-N6-7SR" firstAttribute="top" secondItem="3" secondAttribute="top" constant="199" id="z2T-XI-ire"/>
-                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <connections>
-                        <outlet property="signalA" destination="Cbn-N6-7SR" id="lBS-Pu-38F"/>
-                    </connections>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-273" y="11"/>
+        </scene>
+        <!--Dip View Controller-->
+        <scene sceneID="W4U-EJ-wVa">
+            <objects>
+                <viewController id="fe5-6y-8wD" customClass="DipViewController" sceneMemberID="viewController">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="pS9-y3-BAB" customClass="DipView">
+                        <rect key="frame" x="0.0" y="64" width="568" height="256"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" image="DIPSwitch.png" id="d4b-yj-KgM">
+                                <rect key="frame" x="52" y="43" width="368" height="169"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="dDo-Le-WcB">
+                                <rect key="frame" x="341" y="60" width="35" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4KN-Xa-ylA">
+                                        <rect key="frame" x="0.0" y="66" width="34" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="DS5-vM-ANl" appends="YES" id="483-6X-KcG"/>
+                                </connections>
+                            </view>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="oAg-9M-s5L">
+                                <rect key="frame" x="260" y="60" width="35" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="96N-DP-KoY">
+                                        <rect key="frame" x="-1" y="66" width="34" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="VbL-aD-Q8O" appends="YES" id="cXR-Ro-zbT"/>
+                                </connections>
+                            </view>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="g70-JJ-Wb2">
+                                <rect key="frame" x="179" y="60" width="35" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="h1B-Km-cvB">
+                                        <rect key="frame" x="0.0" y="66" width="34" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="vkP-TA-47j" appends="YES" id="PGM-dH-oRF"/>
+                                </connections>
+                            </view>
+                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U1b-vb-cRw">
+                                <rect key="frame" x="105" y="174" width="16" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="B" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O6R-CZ-ApT">
+                                <rect key="frame" x="188" y="174" width="16" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="423-aa-r1N">
+                                <rect key="frame" x="271" y="174" width="16" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="D" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t7U-6U-nYP">
+                                <rect key="frame" x="352" y="174" width="16" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="Era-wZ-CQb">
+                                <rect key="frame" x="96" y="60" width="35" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fPQ-rv-trA">
+                                        <rect key="frame" x="1" y="66" width="34" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="aHc-XY-jM7" appends="YES" id="rtj-bo-PbZ"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <connections>
+                            <outlet property="dipViewA" destination="Era-wZ-CQb" id="Cav-li-Moq"/>
+                            <outlet property="dipViewB" destination="g70-JJ-Wb2" id="XTQ-HD-Vzm"/>
+                            <outlet property="dipViewBackground" destination="d4b-yj-KgM" id="Vz0-pa-k73"/>
+                            <outlet property="dipViewC" destination="oAg-9M-s5L" id="3up-Ye-gvg"/>
+                            <outlet property="dipViewD" destination="dDo-Le-WcB" id="X1C-7T-363"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="kN4-09-WEZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="c8S-Ki-coE">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <connections>
+                                <action selector="dipFinished:" destination="fe5-6y-8wD" id="RmV-7h-xXg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="mainView" destination="pS9-y3-BAB" id="Pt0-9V-VHr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BuP-3F-WpC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aHc-XY-jM7">
+                    <connections>
+                        <action selector="tapA:" destination="fe5-6y-8wD" id="nxp-rg-xfe"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="vkP-TA-47j">
+                    <connections>
+                        <action selector="tapB:" destination="fe5-6y-8wD" id="qFT-0b-dde"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="VbL-aD-Q8O">
+                    <connections>
+                        <action selector="tapC:" destination="fe5-6y-8wD" id="jMQ-YR-Rhy"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="DS5-vM-ANl">
+                    <connections>
+                        <action selector="tapD:" destination="fe5-6y-8wD" id="6se-iA-sTL"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1238" y="11"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="j1H-ok-iwT">
+            <objects>
+                <navigationController id="bnK-HP-Rpw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="Y0x-OT-O7R">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fe5-6y-8wD" kind="relationship" relationship="rootViewController" id="GWI-Lx-CgJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Q2-Od-XRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="464" y="11"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DIPSwitch.png" width="96" height="64"/>
+    </resources>
     <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        <class className="DipView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DipView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dipViewA" candidateClass="UIView"/>
+                <relationship kind="outlet" name="dipViewB" candidateClass="UIView"/>
+                <relationship kind="outlet" name="dipViewBackground" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="dipViewC" candidateClass="UIView"/>
+                <relationship kind="outlet" name="dipViewD" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="DipViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DipViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dipFinished:"/>
+                <relationship kind="action" name="tapA:"/>
+                <relationship kind="action" name="tapB:"/>
+                <relationship kind="action" name="tapC:"/>
+                <relationship kind="action" name="tapD:"/>
+                <relationship kind="outlet" name="mainView" candidateClass="DipView"/>
+            </relationships>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="GetASignal:"/>
-                <relationship kind="action" name="getASignal:"/>
-                <relationship kind="action" name="schedule:"/>
-                <relationship kind="outlet" name="signalA" candidateClass="UITextField"/>
+                <relationship kind="action" name="debug:"/>
             </relationships>
         </class>
     </classes>

@@ -88,8 +88,10 @@
     }
     if([_current.connection isConnected]&&[_current.connection signalChanged]&&[[_current getFromComponent] updateable]){
       [_current.connection signalUpdate];
+      
       [[_current getFromComponent ] incrementCurrentUpdates];
       [_updatedComponents addObject:[_current getFromComponent]];
+      
       if([[_current getToComponent] hasInfluences]){
         for (Connection *con in [[_current getToComponent] influences]) {
           if([con.from executable] && [con isConnected]){
@@ -114,6 +116,7 @@
 }
 
 - (SignalEvent *)forwardComponent:(Component *)component ToConnection:(NSInteger)cmpconidx WithComponentConnection:(NSInteger)tcmpconidx{
+  
   [[_inForward objectAtIndex:cmpconidx] reconnectToComponent:component WithInSignals:tcmpconidx];
   return [[SignalEvent alloc] init:[_inForward objectAtIndex:cmpconidx]];
 }
