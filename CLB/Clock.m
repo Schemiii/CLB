@@ -20,15 +20,17 @@
 - (id)init:(NSString *)uid withInSignals:(NSInteger)nin AndOutSignals:(NSInteger)nout ForCLB:(CLB *)parentCLB AndSignalEventQueue:(SignalEventQueue *)schedule{
   self = [super init:uid withInSignals:nin AndOutSignals:nout];
   if(self){
-    self.parentSchedule=schedule;
-    self.parent=parentCLB;
-    self.tick = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+    parentSchedule=schedule;
+    parent=parentCLB;
+    tick = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
   }
   return self;
 }
 - (void) timerAction{
+  /*
   [self.parentSchedule
-   insertSignalEvents:[self.parent setClockAutomaticValue:[[self.parent.clockAutomatic.sout objectAtIndex:0]getInvertedSignalValue]]];
+   insertSignalEvents:[self.parent setClockAutomaticValue:[[self.parent.clockAutomatic.signalout objectAtIndex:0]getInvertedSignalValue]]];
+   */
 }
 - (void)action{
   
@@ -43,8 +45,8 @@
 }
 
 - (NSMutableArray *)setInput:(Byte)value{
-  for (int i=0; i<[self.sout count]; i++) {
-    [[self.sout objectAtIndex:i] setSignalValue:value ];
+  for (int i=0; i<[self.signalout count]; i++) {
+    [[self.signalout objectAtIndex:i] setSignalValue:value ];
   }
   return [self getInfluencesEvents];
 }

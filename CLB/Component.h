@@ -10,7 +10,7 @@
 @class SignalEvent;
 @interface Component : NSObject
 @property (readwrite) NSString* cid;
-@property (readwrite) NSMutableArray *sout,*sin;
+@property (readwrite) NSMutableArray *signalout,*signalin;
 @property (readwrite) NSMutableArray *influences;
 @property (readwrite) NSInteger maxUpdates,currentUpdates;
 

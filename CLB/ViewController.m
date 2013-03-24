@@ -27,8 +27,9 @@
   clb = [[CLB alloc] init:@"My CLB"];
   schedule = [[Scheduler alloc] init];
   //Create background timer to simulate CLB
-  simulationTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(simulate) userInfo:nil repeats:YES];
-  [[NSRunLoop currentRunLoop] addTimer:simulationTimer forMode:NSRunLoopCommonModes];
+  //simulationTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(simulate) userInfo:nil repeats:YES];
+  simulationTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(simulate) userInfo:nil repeats:YES];
+  //[[NSRunLoop currentRunLoop] addTimer:simulationTimer forMode:NSRunLoopCommonModes];
   isPaused=NO;
   
   
@@ -48,9 +49,9 @@
 - (void)dipPicker:(DipViewController *)picker DidSetDipAToValue:(Byte)dipA andDipBToValue:(Byte)dipB andDipCToValue:(Byte)dipC andDipDToValue:(Byte)dipD{
   //Change input signals
   [schedule insertEvents:[clb setDIPWithIndex:0 andValue:dipA]];
-  //[schedule insertEvents:[clb setDIPWithIndex:1 andValue:dipB]];
-  //[schedule insertEvents:[clb setDIPWithIndex:2 andValue:dipC]];
-  //[schedule insertEvents:[clb setDIPWithIndex:3 andValue:dipD]];
+  [schedule insertEvents:[clb setDIPWithIndex:1 andValue:dipB]];
+  [schedule insertEvents:[clb setDIPWithIndex:2 andValue:dipC]];
+  [schedule insertEvents:[clb setDIPWithIndex:3 andValue:dipD]];
 }
 - (NSArray *)getDipValues{
   return [[NSArray alloc]initWithObjects:

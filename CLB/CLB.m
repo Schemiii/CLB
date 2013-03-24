@@ -8,8 +8,11 @@
 
 #import "CLB.h"
 #import "Clock.h"
+
 #import "Signal.h"
+#import "SignalEvent.h"
 #import "SignalMultiplier.h"
+#import "Connection.h"
 #import "ExternalSignal.h"
 #import "SignalEventQueue.h"
 #import "JumperDouble.h"
@@ -49,29 +52,29 @@
 - (void)action{
   [super action];
   
-  [[self.sout objectAtIndex:[CLB INOUT_LEFT]] setSignalValue:[[[[inputJumperLeft objectAtIndex:0] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_LEFT]+1] setSignalValue:[[[[inputJumperLeft objectAtIndex:1] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_LEFT]+2] setSignalValue:[[[[inputJumperLeft objectAtIndex:2] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_LEFT]+3] setSignalValue:[[[[inputJumperLeft objectAtIndex:3] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_LEFT]+4] setSignalValue:(Byte) 0];
+  [[self.signalout objectAtIndex:[CLB INOUT_LEFT]] setSignalValue:[[[[inputJumperLeft objectAtIndex:0] signalout] objectAtIndex:1] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_LEFT]+1] setSignalValue:[[[[inputJumperLeft objectAtIndex:1] signalout] objectAtIndex:1] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_LEFT]+2] setSignalValue:[[[[inputJumperLeft objectAtIndex:2] signalout] objectAtIndex:1] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_LEFT]+3] setSignalValue:[[[[inputJumperLeft objectAtIndex:3] signalout] objectAtIndex:1] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_LEFT]+4] setSignalValue:(Byte) 0];
   
-  [[self.sout objectAtIndex:[CLB INOUT_TOP]] setSignalValue:[[[[inputJumperTop objectAtIndex:0] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_TOP]+1 ] setSignalValue:[[[[inputJumperTop objectAtIndex:1] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_TOP]+2] setSignalValue:[[[[inputJumperTop objectAtIndex:2] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_TOP]+3] setSignalValue:[[[[inputJumperTop objectAtIndex:3] sout] objectAtIndex:1] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_TOP]+4] setSignalValue:(Byte)0];
+  [[self.signalout objectAtIndex:[CLB INOUT_TOP]] setSignalValue:[[[[inputJumperTop objectAtIndex:0] signalout] objectAtIndex:1] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_TOP]+1 ] setSignalValue:[[[[inputJumperTop objectAtIndex:1] signalout] objectAtIndex:1] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_TOP]+2] setSignalValue:[[[[inputJumperTop objectAtIndex:2] signalout] objectAtIndex:1] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_TOP]+3] setSignalValue:[[[[inputJumperTop objectAtIndex:3] signalout] objectAtIndex:1] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_TOP]+4] setSignalValue:(Byte)0];
   
-  [[self.sout objectAtIndex:[CLB INOUT_RIGHT]] setSignalValue:[[[[dip objectAtIndex:0] sout] objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_RIGHT]+1] setSignalValue:[[[[dip objectAtIndex:1] sout] objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_RIGHT]+2] setSignalValue:[[orGateX.sout objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_RIGHT]+3] setSignalValue:[[orGateY.sout objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:[CLB INOUT_RIGHT ]+4] setSignalValue:[[jumperClockSelect.sout objectAtIndex:0] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_RIGHT]] setSignalValue:[[[[dip objectAtIndex:0] signalout] objectAtIndex:0] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_RIGHT]+1] setSignalValue:[[[[dip objectAtIndex:1] signalout] objectAtIndex:0] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_RIGHT]+2] setSignalValue:[[orGateX.signalout objectAtIndex:0] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_RIGHT]+3] setSignalValue:[[orGateY.signalout objectAtIndex:0] getSignalValue]];
+  [[self.signalout objectAtIndex:[CLB INOUT_RIGHT ]+4] setSignalValue:[[jumperClockSelect.signalout objectAtIndex:0] getSignalValue]];
   
-  [[self.sout objectAtIndex:CLB.INOUT_BOTTOM] setSignalValue:[[[[dip objectAtIndex:2] sout] objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_BOTTOM+1] setSignalValue:[[[[dip objectAtIndex:3] sout] objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_BOTTOM+2] setSignalValue:[[orGateX.sout objectAtIndex:0] getSignalValue]];
-  [[self.sout objectAtIndex:CLB.INOUT_BOTTOM+3] setSignalValue:[[orGateY.sout objectAtIndex:0]getSignalValue]];
-    [[self.sout objectAtIndex:CLB.INOUT_BOTTOM+3] setSignalValue:[[jumperClockSelect.sout objectAtIndex:0]getSignalValue]];
+  [[self.signalout objectAtIndex:CLB.INOUT_BOTTOM] setSignalValue:[[[[dip objectAtIndex:2] signalout] objectAtIndex:0] getSignalValue]];
+  [[self.signalout objectAtIndex:CLB.INOUT_BOTTOM+1] setSignalValue:[[[[dip objectAtIndex:3] signalout] objectAtIndex:0] getSignalValue]];
+  [[self.signalout objectAtIndex:CLB.INOUT_BOTTOM+2] setSignalValue:[[orGateX.signalout objectAtIndex:0] getSignalValue]];
+  [[self.signalout objectAtIndex:CLB.INOUT_BOTTOM+3] setSignalValue:[[orGateY.signalout objectAtIndex:0]getSignalValue]];
+    [[self.signalout objectAtIndex:CLB.INOUT_BOTTOM+3] setSignalValue:[[jumperClockSelect.signalout objectAtIndex:0]getSignalValue]];
 }
 - (bool)executable{
   return YES;
@@ -132,7 +135,7 @@
   [jumperClockModeSelect setPositionNoneSignal:Signal.off];
   
   jumperClockModeSelect = [[JumperDouble alloc] initWithName:[NSString stringWithFormat:@"%@ :jumperClockModeSelect",self.description]];
-  [jumperClockModeSelect setPositionNoneSignal:[jumperClockModeSelect.sin objectAtIndex:1]];
+  [jumperClockModeSelect setPositionNoneSignal:[jumperClockModeSelect.signalin objectAtIndex:1]];
   
   clockButton = [[ExternalSignal alloc] initWithName:[NSString stringWithFormat:@"%@ :ClockButton",self.description]];
   
@@ -367,28 +370,29 @@
   
 }
 - (Signal *)getASignal{
-  return [[[inputOr objectAtIndex:0] sout] objectAtIndex:0];
+  
+  return [[[inputOr objectAtIndex:0] signalout] objectAtIndex:0];
 }
 - (Signal *)getBSignal{
-  return [[[inputOr objectAtIndex:1] sout] objectAtIndex:0];
+  return [[[inputOr objectAtIndex:1] signalout] objectAtIndex:0];
 }
 - (Signal*) getCSignal{
-  return [[[inputOr objectAtIndex:2] sout] objectAtIndex:0];
+  return [[[inputOr objectAtIndex:2] signalout] objectAtIndex:0];
 }
 - (Signal *)getDSignal{
-  return [[[inputOr objectAtIndex:3] sout] objectAtIndex:0];
+  return [[[inputOr objectAtIndex:3] signalout] objectAtIndex:0];
 }
 - (Signal *)getF1Signal{
-  return [jumperF1.sout objectAtIndex:0];
+  return [jumperF1.signalout objectAtIndex:0];
 }
 - (Signal *)getF2Signal{
-  return [jumperF2.sout objectAtIndex:0];
+  return [jumperF2.signalout objectAtIndex:0];
 }
 - (Signal *)getXSignal{
-  return [orGateX.sout objectAtIndex:0];
+  return [orGateX.signalout objectAtIndex:0];
 }
 - (Signal *)getYSignal{
-  return [orGateY.sout objectAtIndex:0];
+  return [orGateY.signalout objectAtIndex:0];
 }
 
 - (NSMutableArray *)setDIPWithIndex:(int)index andValue:(Byte)value{

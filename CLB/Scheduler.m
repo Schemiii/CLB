@@ -19,30 +19,32 @@
 @property (nonatomic) NSMutableArray *updatedComponents;
 @end
 @implementation Scheduler
-@synthesize schedule;
+@synthesize schedule,current,updatedComponents;
 - (id)init{
   self = [super init];
   if(self){
     schedule = [[SignalEventQueue alloc] init];
+    current=nil;
+    updatedComponents = [[NSMutableArray alloc] init];
   }
   return self;
 }
 
 - (void)insertEvent:(SignalEvent *)event{
-  [self.schedule insertSignalEvent:event];
+  [schedule insertSignalEvent:event];
 }
 
 - (void)insertEvents:(NSArray *)events{
   for (SignalEvent *e in events) {
-    [self.schedule insertSignalEvent:e];
+    [schedule insertSignalEvent:e];
   }
 }
 
 - (void)handleEvents{
-  for (Component *c in self.updatedComponents) {
+  for (Component *c in updatedComponents) {
     [c decrementCurrentUpdates];
   }
-  [self.updatedComponents removeAllObjects];
+  [updatedComponents removeAllObjects];
   @try {
     [self handleSchedule];
   }
@@ -53,37 +55,38 @@
 
 - (void)handleSchedule{
   while(![schedule isEmpty]){
-    self.current = [self.schedule remove];
+    current = [schedule remove];
     
-    if(!self.current.connection.forwarding && [self.current getFromComponent].executable){
-           [[self.current getFromComponent] action];
+    if(!current.connection.forwarding && [current getFromComponent].executable){
+           [[current getFromComponent] action];
     }
     
-    if(self.current.connection.isConnected &&
-       self.current.connection.signalChanged && self.current.getFromComponent.updateable){
-      [self.current.connection signalUpdate];
-      [self.current.getFromComponent incrementCurrentUpdates];
-      [self.updatedComponents addObject:self.current.getFromComponent];
-      if(self.current.getToComponent.hasInfluences){
-        for (Connection *con in self.current.getToComponent.influences) {
+    if(current.connection.isConnected &&
+       current.connection.signalChanged && current.getFromComponent.updateable){
+      [current.connection signalUpdate];
+      [current.getFromComponent incrementCurrentUpdates];
+      [updatedComponents addObject:current.getFromComponent];
+      if([current getToComponent].hasInfluences){
+        for (Connection *con in [current getToComponent].influences) {
           if(con.to.executable && con.isConnected){
-            [self.schedule insertSignalEvent:[[SignalEvent alloc]init:con]];
+            [schedule insertSignalEvent:[[SignalEvent alloc]init:con]];
           }
         }
-      }else{
-        if(self.current.getToComponent.executable && self.current.getToComponent.updateable){
-          [self.current.getToComponent action];
-          [self.current.getToComponent incrementCurrentUpdates];
-          [self.updatedComponents addObject:self.current.getToComponent];
+      }
+      else{
+        if([current getToComponent].executable && [current getToComponent].updateable){
+            [[current getToComponent] action];
+            [[current getToComponent] incrementCurrentUpdates];
+            [updatedComponents addObject:current.getToComponent];
         }
       }
-    }else if(self.current.connection.isConnected && self.current.connection.signalChanged
-             && !self.current.getFromComponent.updateable){
-      [self.schedule clear];
-      for (Signal *s in self.current.getFromComponent.sin) {
+    }else if(current.connection.isConnected && current.connection.signalChanged
+             && !current.getFromComponent.updateable){
+      [schedule clear];
+      for (Signal *s in current.getFromComponent.signalin) {
         [s setSignalValue:(Byte) -1];
       }
-      @throw [[CombinatoricLoopException alloc] initWithName:@"CombinatoricLoopException" reason:@"Signal Changed and Component is not updatable" component:self.current.getFromComponent];
+      @throw [[CombinatoricLoopException alloc] initWithName:@"CombinatoricLoopException" reason:@"Signal Changed and Component is not updatable" component:current.getFromComponent];
     }
        
   }

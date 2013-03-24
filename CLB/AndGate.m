@@ -19,10 +19,10 @@
 }
 - (void)action{
   Byte newVal = 1;
-  for (int i=0; i<[self.sin count]; i++) {
-    newVal&=[[self.sin objectAtIndex:i] getSignalValue];
+  for (int i=0; i<[self.signalin count]; i++) {
+    newVal&=[[self.signalin objectAtIndex:i] getSignalValue];
   }
-  [[self.sout objectAtIndex:0] setSignalValue:newVal];
+  [[self.signalout objectAtIndex:0] setSignalValue:newVal];
 }
 
 - (bool)executable{

@@ -10,33 +10,34 @@
 #import "Signal.h"
 #import "SignalEvent.h"
 @implementation JumperDouble
+@synthesize positionNoneSignal,position;
 - (id)init{
   self = [super init:@"" withInSignals:2 AndOutSignals:1];
   if(self){
-    _positionNoneSignal = [Signal off];
+    positionNoneSignal = [Signal off];
   }
   return self;
 }
 - (id)initWithName:(NSString *)name{
   self = [super init:name withInSignals:2 AndOutSignals:1];
   if(self){
-    _positionNoneSignal=[Signal off];
+    positionNoneSignal=[Signal off];
   }
   return self;
 }
 - (id)initWithName:(NSString *)name AndPositionSignal:(Signal *)positionSignal{
   self = [super init:name withInSignals:2 AndOutSignals:1];
   if(self){
-    _positionNoneSignal=positionSignal;
+    positionNoneSignal=positionSignal;
   }
   return self;
 }
 
 - (void)action{
   if(position==[JumperDouble POSITION_LEFT] || position==[JumperDouble POSITION_RIGHT]){
-    [[self.sout objectAtIndex:0] setSignalValue:[[self.sin objectAtIndex:position-1] getSignalValue]];
+    [[self.signalout objectAtIndex:0] setSignalValue:[[self.signalin objectAtIndex:position-1] getSignalValue]];
   }else{
-    [[self.sout objectAtIndex:0] setSignalValue:[_positionNoneSignal getSignalValue]];
+    [[self.signalout objectAtIndex:0] setSignalValue:[positionNoneSignal getSignalValue]];
   }
 }
 

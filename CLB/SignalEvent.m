@@ -10,7 +10,7 @@
 #import "Component.h"
 #import "Connection.h"
 @implementation SignalEvent
-
+@synthesize connection;
 
 - (id) init{
   NSException *exc = [[NSException alloc] initWithName:@"BadInitializerException" reason:@"This Initializer does not fit the Model. Use the appropriate one instead" userInfo:nil];
@@ -19,16 +19,16 @@
 - (id) init:(Connection *)con{
   self = [super init];
   if(self){
-    _connection=con;
+    connection=con;
   }
   return self;
 }
 
 - (Component *)getFromComponent{
-  return _connection.from;
+  return connection.from;
 }
 - (Component*) getToComponent{
-  return _connection.to;
+  return connection.to;
 }
 
 

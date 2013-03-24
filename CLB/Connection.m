@@ -10,60 +10,61 @@
 #import "Signal.h"
 #import "Component.h"
 @implementation Connection
-- (id)initWithComponent:(Component *)from AndComponent:(Component *)to WithOutSignals:(NSInteger)nsout AndInSignals:(NSInteger)nsin{
+@synthesize sin,sout,from,to,forwarding;
+- (id)initWithComponent:(Component *)componentFrom AndComponent:(Component *)componentTo WithOutSignals:(NSInteger)nsout AndInSignals:(NSInteger)nsin{
   self = [super init];
   if(self){
-    _from=from;
-    _to=to;
-    _sout = nsout;
-    _sin = nsin;
-    _forwarding=NO;
+    from=componentFrom;
+    to=componentTo;
+    sout = nsout;
+    sin = nsin;
+    forwarding=NO;
   }
   return self;
 }
-- (id)initWithComponent:(Component *)from AndComponent:(Component *)to WithOutSignals:(NSInteger)nsout AndInSignals:(NSInteger)nsin IsForwarding:(BOOL)forward{
+- (id)initWithComponent:(Component *)componentFrom AndComponent:(Component *)componentTo WithOutSignals:(NSInteger)nsout AndInSignals:(NSInteger)nsin IsForwarding:(BOOL)forward{
   self = [super init];
   if(self){
-    self=[self initWithComponent:from AndComponent:to WithOutSignals:nsout AndInSignals:nsin];
-    _forwarding=forward;
+    self=[self initWithComponent:componentFrom AndComponent:componentTo WithOutSignals:nsout AndInSignals:nsin];
+    forwarding=forward;
   }
   return self;
 }
 - (void)disconnect{
-  [[_to.sin objectAtIndex:_sin]setSignalValue:0];
-  _to=nil;
-  _sin=-1;
+  [[to.signalin objectAtIndex:sin]setSignalValue:0];
+  to=nil;
+  sin=-1;
 }
-- (void)reconnectToComponent:(Component *)to WithInSignals:(NSInteger)nsin{
-  _to=to;
-  _sin=nsin;
+- (void)reconnectToComponent:(Component *)componentTo WithInSignals:(NSInteger)nsin{
+  to=componentTo;
+  sin=nsin;
 }
-- (void)reconnectWithComponent:(Component *)from AndComponent:(Component *)to WithOutSignals:(NSInteger)nsout AndInSignals:(NSInteger)nsin{
-  _from=from;
-  _to=to;
-  _sin=nsin;
-  _sout=nsout;
+- (void)reconnectWithComponent:(Component *)componentFrom AndComponent:(Component *)componentTo WithOutSignals:(NSInteger)nsout AndInSignals:(NSInteger)nsin{
+  from=componentFrom;
+  to=componentTo;
+  sin=nsin;
+  sout=nsout;
 }
 - (BOOL)signalChanged{
-  if( _forwarding ){
-    return [[_from.sin objectAtIndex:_sout] getSignalValue]!=[[_to.sin objectAtIndex:_sin] getSignalValue];
+  if( forwarding ){
+    return [[from.signalin objectAtIndex:sout] getSignalValue]!=[[to.signalin objectAtIndex:sin] getSignalValue];
   }else{
-    return [[_from.sout objectAtIndex:_sout] getSignalValue]!=[[_to.sin objectAtIndex:_sin] getSignalValue];
+    return [[from.signalout objectAtIndex:sout] getSignalValue]!=[[to.signalin objectAtIndex:sin] getSignalValue];
   }
 }
 - (void)signalUpdate{
-  if ( _forwarding ) {
-    if ( [[_from.sin objectAtIndex:_sout] getSignalValue]!=-1){
-      [[_to.sin objectAtIndex:_sin] setSignalValue:[[_from.sin objectAtIndex:_sout] getSignalValue]];
+  if ( forwarding ) {
+    if ( [[from.signalin objectAtIndex:sout] getSignalValue]!=-1){
+      [[to.signalin objectAtIndex:sin] setSignalValue:[[from.signalin objectAtIndex:sout] getSignalValue]];
     }
   }else{
-    if( [[_from.sout objectAtIndex:_sout] getSignalValue] !=-1){
-      [[_to.sin objectAtIndex:_sin] setSignalValue:[[_from.sout objectAtIndex:_sout]getSignalValue]];
+    if( [[from.signalout objectAtIndex:sout] getSignalValue] !=-1){
+      [[to.signalin objectAtIndex:sin] setSignalValue:[[from.signalout objectAtIndex:sout]getSignalValue]];
     }
   }
 }
 - (BOOL)isConnected{
-  return _sin!=-1;
+  return sin!=-1;
 }
 
 

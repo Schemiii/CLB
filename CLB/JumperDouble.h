@@ -9,10 +9,9 @@
 #import "Component.h"
 @class Signal;
 @class SignalEvent;
-@interface JumperDouble : Component{
-  @private
-  NSInteger position;
-}
+@interface JumperDouble : Component
+
+@property (readonly) NSInteger position;
 @property (readwrite) Signal* positionNoneSignal;
 
 - initWithName : (NSString*) name;

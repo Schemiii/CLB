@@ -22,8 +22,8 @@
   return self;
 }
 - (void)action{
-  for (int i=0; i<[self.sout count]; i++) {
-    [[self.sout objectAtIndex:i] setSignalValue:[[self.sin objectAtIndex:0]getSignalValue]];
+  for (int i=0; i<[self.signalout count]; i++) {
+    [[self.signalout objectAtIndex:i] setSignalValue:[[self.signalin objectAtIndex:0]getSignalValue]];
   }
 }
 - (bool)executable{

@@ -18,10 +18,10 @@
   return self;
 }
 - (void)action{
-  if([[self.sin objectAtIndex:1] getSignalValue]==(Byte)1){
-    [[self.sout objectAtIndex:0] setSignalValue:[[self.sin objectAtIndex:0] getSignalValue]];
-    [[self.sout objectAtIndex:1] setSignalValue:[[self.sin objectAtIndex:0] getInvertedSignalValue]];
-    [[self.sin objectAtIndex:1] setOff];
+  if([[self.signalin objectAtIndex:1] getSignalValue]==(Byte)1){
+    [[self.signalout objectAtIndex:0] setSignalValue:[[self.signalin objectAtIndex:0] getSignalValue]];
+    [[self.signalout objectAtIndex:1] setSignalValue:[[self.signalin objectAtIndex:0] getInvertedSignalValue]];
+    [[self.signalin objectAtIndex:1] setOff];
   }
 }
 - (bool)executable{

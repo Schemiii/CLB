@@ -22,9 +22,9 @@
   return self;
 }
 - (void)action{
-  for (int i=0; i<[self.sout count]/2; i++) {
-    [[self.sout objectAtIndex:i*2] setSignalValue:[[self.sin objectAtIndex:0] getSignalValue]];
-    [[self.sout objectAtIndex:i*2+1] setSignalValue:[[self.sin objectAtIndex:0] getInvertedSignalValue]];
+  for (int i=0; i<[self.signalout count]/2; i++) {
+    [[self.signalout objectAtIndex:i*2] setSignalValue:[[self.signalin objectAtIndex:0] getSignalValue]];
+    [[self.signalout objectAtIndex:i*2+1] setSignalValue:[[self.signalin objectAtIndex:0] getInvertedSignalValue]];
   }
 }
 - (bool)executable{

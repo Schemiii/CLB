@@ -18,7 +18,7 @@
   @property (readwrite) NSInteger rows,columns;
 @end
 @implementation JumperMatrix
-@synthesize rows=_rows,columns=_columns,inputSplitter=_inputSplitter,jumpers=_jumpers;
+@synthesize rows=_rows,columns=_columns,inputSplitter=_inputSplitter,jumpers=_jumpers,rowAnd,rowsOr;
 - (id)initWithInCount:(NSInteger)inCount AndRows:(NSInteger)nrow AndColumns:(NSInteger)ncol{
   self = [super init:@"" withInSignals:inCount AndOutSignals:1];
   if(self){
@@ -44,15 +44,15 @@
 
 - (void)action{
   [super action];
-  [[self.sout objectAtIndex:0] setSignalValue:[[_rowsOr.sout objectAtIndex:0] getSignalValue]];
+  [[self.signalout objectAtIndex:0] setSignalValue:[[rowsOr.signalout objectAtIndex:0] getSignalValue]];
 }
 - (bool)executable{
   return YES;
 }
 
 - (void)createComponents{
-  _inputSplitter = [[NSMutableArray alloc] initWithCapacity:[self.sin count]];
-  for (int i=0; i<[self.sin count]; i++) {
+  _inputSplitter = [[NSMutableArray alloc] initWithCapacity:[self.signalin count]];
+  for (int i=0; i<[self.signalin count]; i++) {
     [_inputSplitter insertObject:[[SignalSplitter alloc]init:[NSString stringWithFormat:@"%@ :Splitter|%d",self.cid,i] WithOutSignalCount:_rows] atIndex:i];
   }
   _jumpers = [[NSMutableArray alloc] initWithCapacity:_rows];
@@ -63,15 +63,15 @@
     }
     [_jumpers insertObject:cols atIndex:i];
   }
-  _rowAnd = [[NSMutableArray alloc] initWithCapacity:_rows];
+  rowAnd = [[NSMutableArray alloc] initWithCapacity:_rows];
   for (int i=0; i<_rows; i++) {
-    [_rowAnd insertObject:[[AndGate alloc]init:[NSString stringWithFormat:@"%@:AndGate|%d",self.cid,i] withInSignals:_columns AndOutSignals:1 ] atIndex:i];
+    [rowAnd insertObject:[[AndGate alloc]init:[NSString stringWithFormat:@"%@:AndGate|%d",self.cid,i] withInSignals:_columns AndOutSignals:1 ] atIndex:i];
   }
-  _rowsOr = [[OrGate alloc]init:[NSString stringWithFormat:@"%@:OrGate",self.cid] withInSignals:_rows AndOutSignals:1];
+  rowsOr = [[OrGate alloc]init:[NSString stringWithFormat:@"%@:OrGate",self.cid] withInSignals:_rows AndOutSignals:1];
 }
 
 - (void)connectInnerComponents{
-  for (int i=0; i<[self.sin count]; i++) {
+  for (int i=0; i<[self.signalin count]; i++) {
     [self.schedule insertSignalEvent:[self forwardComponent:[_inputSplitter objectAtIndex:i] ToConnection:i WithComponentConnection:0]];
   }
   
@@ -81,7 +81,7 @@
       [self.schedule insertSignalEvents:
        [[self.inputSplitter objectAtIndex:j]connectConnectionsWithConnectionsOfComponent: [[self.jumpers objectAtIndex:i] objectAtIndex:j] WithSignalIndexesOfCallingComponent:[[NSArray alloc]initWithObjects:[[NSNumber alloc]initWithInt:i*2],[[NSNumber alloc]initWithInt:i*2+1], nil] AndSignalIndexesToConnectWith:[[NSArray alloc]initWithObjects:[[NSNumber alloc]initWithInt:0],[[NSNumber alloc]initWithInt:1], nil]]];
     
-      [self.schedule insertSignalEvent:[[[_jumpers objectAtIndex:i] objectAtIndex:j] connectConnectionWithConnectionOfComponent:[_rowAnd objectAtIndex:i] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:j]];
+      [self.schedule insertSignalEvent:[[[_jumpers objectAtIndex:i] objectAtIndex:j] connectConnectionWithConnectionOfComponent:[rowAnd objectAtIndex:i] WithSignalIndexOfCallingComponent:0 AndSignalIndexToConnectWith:j]];
       }
   }
   for (int i=0;i<[self.rowAnd count];i++){

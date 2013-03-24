@@ -75,10 +75,14 @@
 }
 - (void)setup{
   NSArray *dips = [self.dipDelegate getDipValues];
-  [mainView dipA:[[dips objectAtIndex:0]intValue]];
-  [mainView dipB:[[dips objectAtIndex:1]intValue]];
-  [mainView dipC:[[dips objectAtIndex:2]intValue]];
-  [mainView dipD:[[dips objectAtIndex:3]intValue]];
+  vdipa=[[dips objectAtIndex:0]intValue];
+  vdipb=[[dips objectAtIndex:1]intValue];
+  vdipc=[[dips objectAtIndex:2]intValue];
+  vdipd=[[dips objectAtIndex:3]intValue];
+  [mainView dipA:vdipa];
+  [mainView dipB:vdipb];
+  [mainView dipC:vdipc];
+  [mainView dipD:vdipd];
 }
 
 @end

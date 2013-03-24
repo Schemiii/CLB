@@ -28,8 +28,8 @@
 }
 
 - (void)action{
-  for (int i=0; i<[self.sout count]; i++) {
-    [[self.sout objectAtIndex:i] setSignalValue:[[self.sin objectAtIndex:0]getSignalValue]];
+  for (int i=0; i<[self.signalout count]; i++) {
+    [[self.signalout objectAtIndex:i] setSignalValue:[[self.signalin objectAtIndex:0]getSignalValue]];
   }
 }
 
@@ -38,9 +38,9 @@
 }
 
 - (NSArray *)setInputWithIndex:(NSInteger)idx AndValue:(Byte)val{
-  [[self.sin objectAtIndex:idx] setSignalValue:val];
-  NSMutableArray *sigevts = [[NSMutableArray alloc] initWithCapacity:[self.sout count]];
-  for (int i=0; i<[self.sout count]; i++) {
+  [[self.signalin objectAtIndex:idx] setSignalValue:val];
+  NSMutableArray *sigevts = [[NSMutableArray alloc] initWithCapacity:[self.signalout count]];
+  for (int i=0; i<[self.signalout count]; i++) {
     [sigevts insertObject:[[SignalEvent alloc] init:[self.influences objectAtIndex:i]] atIndex:i];
   }
   return sigevts;

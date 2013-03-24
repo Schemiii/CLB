@@ -20,12 +20,12 @@
 }
 - (void)action{
   if(position==[JumperSingle POSITION_LEFT]){
-    for (int i=0; i<[self.sin count]; i++) {
-      [[self.sout objectAtIndex:i] setSignalValue:[[self.sin objectAtIndex:i] getSignalValue]];
+    for (int i=0; i<[self.signalin count]; i++) {
+      [[self.signalout objectAtIndex:i] setSignalValue:[[self.signalin objectAtIndex:i] getSignalValue]];
     }
   }else{
-    for (int i=0; i<[self.sin count]; i++) {
-      [[self.sin objectAtIndex:i] setSignalValue:0];
+    for (int i=0; i<[self.signalin count]; i++) {
+      [[self.signalin objectAtIndex:i] setSignalValue:0];
     }
   }
 }
