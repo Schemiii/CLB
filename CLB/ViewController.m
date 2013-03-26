@@ -53,7 +53,7 @@
       [(DipViewController*)viewController setup];
     }if([viewController respondsToSelector:@selector(setupWithJumperSetup:)]){
       //TODO Change this appropriate and set delegate
-      [(JumperViewController*)viewController setupWithJumperSetup:JUMPERF1];
+      [(JumperViewController*)viewController setupWithJumperSetup:JUMPERSYNCXY];
     }
   }
 }

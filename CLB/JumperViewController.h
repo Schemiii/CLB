@@ -12,19 +12,18 @@
 typedef enum{
   JUMPERF1=0,
   JUMPERF2,
-  JUMPERFEEDBACKCF1,
-  JUMPERFEEDBACKDF2,
-  JUMPERSYNCHRONICITYF1,
-  JUMPERSYNCHRONICITYF2,
-  JUMPERCLOCKSELECT,
-  JUMPERCLOCKMODESELECT
+  JUMPERFEEDBACK,
+  JUMPERSYNCXY,
+  JUMPERLEFT,
+  JUMPERTOP,
+  JUMPERCLOCK
 }JumperSetup;
 
 @interface JumperViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *mainView;
 @property JumperSetup jumperSetup;
-@property (strong, nonatomic) IBOutlet UIScrollView *jumperScrView;
-@property (weak, nonatomic) IBOutlet JumperSegmentedControl *aJumper;
+@property UIScrollView *scvr;
+
 - (IBAction)done:(id)sender;
 
 - (void) setupWithJumperSetup : (JumperSetup) setup;
