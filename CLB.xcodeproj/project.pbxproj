@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE5E224A1701A79C007C1ABB /* JumperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5E22491701A79C007C1ABB /* JumperViewController.m */; };
+		DE5E227F1701DB36007C1ABB /* DoubleJumper.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E227D1701DB36007C1ABB /* DoubleJumper.png */; };
+		DE5E22801701DB36007C1ABB /* DoubleJumperDipped.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E227E1701DB36007C1ABB /* DoubleJumperDipped.png */; };
+		DE5E22821701DD7D007C1ABB /* DipMiddle.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E22811701DD7D007C1ABB /* DipMiddle.png */; };
+		DE5E22851701DECE007C1ABB /* JumperSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5E22841701DECD007C1ABB /* JumperSegmentedControl.m */; };
 		DED3BF0A16FEF9FF0097040C /* DipView.m in Sources */ = {isa = PBXBuildFile; fileRef = DED3BF0916FEF9FF0097040C /* DipView.m */; };
 		DED3BF0D16FEFA0E0097040C /* DipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DED3BF0C16FEFA0E0097040C /* DipViewController.m */; };
 		DED3BF0F16FEFF0B0097040C /* DIPSwitch.png in Resources */ = {isa = PBXBuildFile; fileRef = DED3BF0E16FEFF0B0097040C /* DIPSwitch.png */; };
@@ -45,6 +50,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE5E22481701A79C007C1ABB /* JumperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumperViewController.h; sourceTree = "<group>"; };
+		DE5E22491701A79C007C1ABB /* JumperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumperViewController.m; sourceTree = "<group>"; };
+		DE5E227D1701DB36007C1ABB /* DoubleJumper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoubleJumper.png; sourceTree = "<group>"; };
+		DE5E227E1701DB36007C1ABB /* DoubleJumperDipped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoubleJumperDipped.png; sourceTree = "<group>"; };
+		DE5E22811701DD7D007C1ABB /* DipMiddle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DipMiddle.png; sourceTree = "<group>"; };
+		DE5E22831701DECD007C1ABB /* JumperSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumperSegmentedControl.h; sourceTree = "<group>"; };
+		DE5E22841701DECD007C1ABB /* JumperSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumperSegmentedControl.m; sourceTree = "<group>"; };
 		DED3BF0816FEF9FF0097040C /* DipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DipView.h; sourceTree = "<group>"; };
 		DED3BF0916FEF9FF0097040C /* DipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DipView.m; sourceTree = "<group>"; };
 		DED3BF0B16FEFA0E0097040C /* DipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DipViewController.h; sourceTree = "<group>"; };
@@ -127,6 +139,9 @@
 		DED3BF1016FEFF120097040C /* Pic */ = {
 			isa = PBXGroup;
 			children = (
+				DE5E22811701DD7D007C1ABB /* DipMiddle.png */,
+				DE5E227D1701DB36007C1ABB /* DoubleJumper.png */,
+				DE5E227E1701DB36007C1ABB /* DoubleJumperDipped.png */,
 				DED3BF0E16FEFF0B0097040C /* DIPSwitch.png */,
 			);
 			name = Pic;
@@ -167,6 +182,10 @@
 				DEE695AB16F9C27400CF86F7 /* AppDelegate.h */,
 				DEE695AC16F9C27400CF86F7 /* AppDelegate.m */,
 				DEE695B416F9C27400CF86F7 /* MainStoryboard.storyboard */,
+				DE5E22481701A79C007C1ABB /* JumperViewController.h */,
+				DE5E22491701A79C007C1ABB /* JumperViewController.m */,
+				DE5E22831701DECD007C1ABB /* JumperSegmentedControl.h */,
+				DE5E22841701DECD007C1ABB /* JumperSegmentedControl.m */,
 				DEE695B716F9C27400CF86F7 /* ViewController.h */,
 				DEE695B816F9C27400CF86F7 /* ViewController.m */,
 				DED3BF0816FEF9FF0097040C /* DipView.h */,
@@ -298,6 +317,9 @@
 				DEE695B316F9C27400CF86F7 /* Default-568h@2x.png in Resources */,
 				DEE695B616F9C27400CF86F7 /* MainStoryboard.storyboard in Resources */,
 				DED3BF0F16FEFF0B0097040C /* DIPSwitch.png in Resources */,
+				DE5E227F1701DB36007C1ABB /* DoubleJumper.png in Resources */,
+				DE5E22801701DB36007C1ABB /* DoubleJumperDipped.png in Resources */,
+				DE5E22821701DD7D007C1ABB /* DipMiddle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +356,8 @@
 				DEE6960216F9C29A00CF86F7 /* XOrGate.m in Sources */,
 				DED3BF0A16FEF9FF0097040C /* DipView.m in Sources */,
 				DED3BF0D16FEFA0E0097040C /* DipViewController.m in Sources */,
+				DE5E224A1701A79C007C1ABB /* JumperViewController.m in Sources */,
+				DE5E22851701DECE007C1ABB /* JumperSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,4 +27,7 @@
 - (bool)executable{
   return YES;
 }
+- (NSString *)description{
+  return [NSString stringWithFormat:@"OrGate"];
+}
 @end

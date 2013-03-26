@@ -80,15 +80,7 @@
 - (void) resetUpdates{
   currentUpdates=0;
 }
-- (NSString *)description{
-  NSMutableString *descr = [[NSMutableString alloc] init];
-  [descr appendString:[NSString stringWithFormat:@"%@\n",cid]];
-  for (int i=0; i<[signalin count]; i++)
-    [descr appendString:[NSString stringWithFormat:@"in[%d]: %d \n",i,[[signalin objectAtIndex:i] getSignalValue]]];
-  for (int i=0; i<[signalout count]; i++)
-    [descr appendString:[NSString stringWithFormat:@"out[%d]: %d \n",i,[[signalout objectAtIndex:i] getSignalValue]]];
-  return descr;
-}
+
 
 - (Byte)getInSignalValue:(NSInteger)index{
   return (Byte)[signalin objectAtIndex:index];

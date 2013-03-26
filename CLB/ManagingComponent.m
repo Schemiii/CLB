@@ -81,13 +81,17 @@
 
 - (void)handleSchedule{
   while (![schedule isEmpty]){
+    
     current=[schedule remove];
+    
     if(!([current.connection forwarding])&&[[current getFromComponent] executable]){
       
       Component *comp =[current getFromComponent];
       [comp action];
     }
+    
     if([current.connection isConnected]&&[current.connection signalChanged]&&[[current getFromComponent] updateable]){
+      
       [current.connection signalUpdate];
       
       [[current getFromComponent ] incrementCurrentUpdates];

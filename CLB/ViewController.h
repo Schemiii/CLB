@@ -13,6 +13,8 @@
 @class Scheduler;
 @interface ViewController : UIViewController <UINavigationControllerDelegate,DipDelegate>
 @property (nonatomic) CLB *clb;
+- (IBAction)debugF1:(id)sender;
+- (IBAction)debugF2:(id)sender;
 
 - (IBAction)debug:(id)sender;
 @property (nonatomic) Scheduler *schedule;

@@ -27,10 +27,10 @@
   return self;
 }
 - (void) timerAction{
-  /*
+  
   [self.parentSchedule
    insertSignalEvents:[self.parent setClockAutomaticValue:[[self.parent.clockAutomatic.signalout objectAtIndex:0]getInvertedSignalValue]]];
-   */
+   
 }
 - (void)action{
   

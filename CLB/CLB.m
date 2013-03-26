@@ -80,14 +80,19 @@
   return YES;
 }
 - (void) createComponents{
+  
   inputJumperLeft = [[NSMutableArray alloc] initWithCapacity:4];
   inputJumperTop = [[NSMutableArray alloc] initWithCapacity:4];
+  
   dip = [[NSMutableArray alloc] initWithCapacity:4];
   inputMultiplier = [[NSMutableArray alloc] initWithCapacity:4];
   jumperFeedback = [[NSMutableArray alloc] initWithCapacity:2];
+  
   inputOr = [[NSMutableArray alloc] initWithCapacity:4];
+  
   multiplierF1F2 = [[NSMutableArray alloc] initWithCapacity:2];
   multiplierF1F2Synced = [[NSMutableArray alloc] initWithCapacity:2];
+  
   jumperSynchronicity = [[NSMutableArray alloc] initWithCapacity:2];
   flipFlops = [[NSMutableArray alloc]initWithCapacity:2];
   
@@ -100,8 +105,13 @@
     [dip insertObject:[[ExternalSignal alloc]initWithName:[NSString stringWithFormat:@"%@ :dip|  %d",self.description,i] AndOutSignal:2]
               atIndex:i];
   }
-  [jumperFeedback insertObject:[[JumperDouble alloc] initWithName:[NSString stringWithFormat:@"%@ :JumperCF1|",self.description] AndPositionSignal:Signal.on] atIndex:0];
-  [jumperFeedback insertObject:[[JumperDouble alloc] initWithName:[NSString stringWithFormat:@"%@ :JumperDF2|",self.description] AndPositionSignal:Signal.on] atIndex:1];
+  
+  [jumperFeedback insertObject:[[JumperDouble alloc]initWithName:[NSString stringWithFormat:@"%@ :JumperCF1|",self.description]  ] atIndex:0];
+  [[jumperFeedback objectAtIndex:0] setPositionNoneSignal:[Signal on]];
+   
+  [jumperFeedback insertObject:[[JumperDouble alloc]initWithName:[NSString stringWithFormat:@"%@ :JumperDF2|",self.description]  ] atIndex:1];
+  [[jumperFeedback objectAtIndex:1] setPositionNoneSignal:[Signal on]];
+  
   for (int i=0; i<4; i++) {
     [inputOr insertObject:[[OrGate alloc] init:[NSString stringWithFormat:@"%@ :InputOr|  %d",self.description,i] withInSignals:3 AndOutSignals:1] atIndex:i];
     [inputMultiplier insertObject:[[SignalMultiplier alloc] init:[NSString stringWithFormat:@"%@ :inputMul||  %d",self.description,i] withInSignals:1 AndOutSignals:4] atIndex:i];
@@ -110,8 +120,10 @@
   jumperF1 = [[JumperMatrix alloc] initWithName:[NSString stringWithFormat:@"%@ :JumperMatrixF1",self.description] AndInCount:4 AndRows:8 AndColumns:4];
   jumperF2 = [[JumperMatrix alloc] initWithName:[NSString stringWithFormat:@"%@ :JumperMatrixF2",self.description] AndInCount:4 AndRows:8 AndColumns:4];
   
-  [jumperSynchronicity insertObject:[[JumperDouble alloc] initWithName:[NSString stringWithFormat:@"%@ :SyncAsyncF1",self.description] AndPositionSignal:Signal.on] atIndex:0];
-  [jumperSynchronicity insertObject:[[JumperDouble alloc] initWithName:[NSString stringWithFormat:@"%@ :SyncAsyncF2",self.description] AndPositionSignal:Signal.on] atIndex:1];
+  [jumperSynchronicity insertObject:[[JumperDouble alloc] initWithName:@"SyncAsyncF1"] atIndex:0];
+  [[jumperSynchronicity objectAtIndex:0] setPositionNoneSignal:[Signal on]];
+  [jumperSynchronicity insertObject:[[JumperDouble alloc] initWithName:@"SyncAsyncF2"] atIndex:0];
+  [[jumperSynchronicity objectAtIndex:1] setPositionNoneSignal:[Signal on]];
   
   [flipFlops insertObject:[[DFlipFlop alloc] initWithName:[NSString stringWithFormat:@"%@ :FlipFlopF1",self.description]] atIndex:0];
   [flipFlops insertObject:[[DFlipFlop alloc] initWithName:[NSString stringWithFormat:@"%@ :FlipFlopF2",self.description]] atIndex:1];
@@ -132,7 +144,7 @@
   multiplierY = [[SignalMultiplier alloc] init:[NSString stringWithFormat:@"%@ :MulY",self.description]  withInSignals:1 AndOutSignals:4];
   
   jumperClockSelect = [[JumperDouble alloc] initWithName:[NSString stringWithFormat:@"%@ :ClockSelect",self.description]];
-  [jumperClockModeSelect setPositionNoneSignal:Signal.off];
+  [jumperClockSelect setPositionNoneSignal:Signal.off];
   
   jumperClockModeSelect = [[JumperDouble alloc] initWithName:[NSString stringWithFormat:@"%@ :jumperClockModeSelect",self.description]];
   [jumperClockModeSelect setPositionNoneSignal:[jumperClockModeSelect.signalin objectAtIndex:1]];
@@ -366,9 +378,7 @@
    [clockMultiplier connectConnectionWithConnectionOfComponent:
     [flipFlops objectAtIndex:1] WithSignalIndexOfCallingComponent:1 AndSignalIndexToConnectWith:1]];
 }
-- (void)initialize{
-  
-}
+
 - (Signal *)getASignal{
   
   return [[[inputOr objectAtIndex:0] signalout] objectAtIndex:0];

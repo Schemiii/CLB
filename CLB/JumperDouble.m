@@ -15,6 +15,7 @@
   self = [super init:@"" withInSignals:2 AndOutSignals:1];
   if(self){
     positionNoneSignal = [Signal off];
+    
   }
   return self;
 }

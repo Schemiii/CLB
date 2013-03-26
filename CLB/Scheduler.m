@@ -55,14 +55,15 @@
 
 - (void)handleSchedule{
   while(![schedule isEmpty]){
-    current = [schedule remove];
-    
+    self.current = [schedule remove];
+   
     if(!current.connection.forwarding && [current getFromComponent].executable){
-           [[current getFromComponent] action];
+      
+      [[current getFromComponent] action];
     }
     
-    if(current.connection.isConnected &&
-       current.connection.signalChanged && current.getFromComponent.updateable){
+    if([current.connection isConnected] &&
+       [current.connection signalChanged] && [[current getFromComponent]updateable]){
       [current.connection signalUpdate];
       [current.getFromComponent incrementCurrentUpdates];
       [updatedComponents addObject:current.getFromComponent];

@@ -31,5 +31,7 @@
   return connection.to;
 }
 
-
+- (NSString*) description{
+  return [NSString stringWithFormat:@"SigEvt - From : %@ to : %@",connection.from,connection.to];
+}
 @end
