@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE5075A11714750D000158B1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5075A01714750D000158B1 /* Default.png */; };
+		DE5075A317147518000158B1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5075A217147518000158B1 /* Default@2x.png */; };
 		DE5E224A1701A79C007C1ABB /* JumperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5E22491701A79C007C1ABB /* JumperViewController.m */; };
 		DE5E227F1701DB36007C1ABB /* DoubleJumper.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E227D1701DB36007C1ABB /* DoubleJumper.png */; };
 		DE5E22801701DB36007C1ABB /* DoubleJumperDipped.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E227E1701DB36007C1ABB /* DoubleJumperDipped.png */; };
@@ -26,7 +28,6 @@
 		DEE695A716F9C27400CF86F7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE695A516F9C27400CF86F7 /* InfoPlist.strings */; };
 		DEE695A916F9C27400CF86F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE695A816F9C27400CF86F7 /* main.m */; };
 		DEE695AD16F9C27400CF86F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE695AC16F9C27400CF86F7 /* AppDelegate.m */; };
-		DEE695AF16F9C27400CF86F7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE695AE16F9C27400CF86F7 /* Default.png */; };
 		DEE695B116F9C27400CF86F7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE695B016F9C27400CF86F7 /* Default@2x.png */; };
 		DEE695B316F9C27400CF86F7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE695B216F9C27400CF86F7 /* Default-568h@2x.png */; };
 		DEE695B616F9C27400CF86F7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE695B416F9C27400CF86F7 /* MainStoryboard.storyboard */; };
@@ -55,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE5075A01714750D000158B1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		DE5075A217147518000158B1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DE5E22481701A79C007C1ABB /* JumperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumperViewController.h; sourceTree = "<group>"; };
 		DE5E22491701A79C007C1ABB /* JumperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumperViewController.m; sourceTree = "<group>"; };
 		DE5E227D1701DB36007C1ABB /* DoubleJumper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoubleJumper.png; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 		DEE6959016F9C27400CF86F7 = {
 			isa = PBXGroup;
 			children = (
+				DE5075A217147518000158B1 /* Default@2x.png */,
+				DE5075A01714750D000158B1 /* Default.png */,
 				DEE695A216F9C27400CF86F7 /* CLB */,
 				DEE6959B16F9C27400CF86F7 /* Frameworks */,
 				DEE6959A16F9C27400CF86F7 /* Products */,
@@ -329,7 +334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEE695A716F9C27400CF86F7 /* InfoPlist.strings in Resources */,
-				DEE695AF16F9C27400CF86F7 /* Default.png in Resources */,
 				DEE695B116F9C27400CF86F7 /* Default@2x.png in Resources */,
 				DEE695B316F9C27400CF86F7 /* Default-568h@2x.png in Resources */,
 				DEE695B616F9C27400CF86F7 /* MainStoryboard.storyboard in Resources */,
@@ -341,6 +345,8 @@
 				DEB42437171456A000B8BD9E /* dipbackground.png in Resources */,
 				DEB4243B17145B3100B8BD9E /* Clock.png in Resources */,
 				DEB4243D17145C9500B8BD9E /* inputselect.png in Resources */,
+				DE5075A11714750D000158B1 /* Default.png in Resources */,
+				DE5075A317147518000158B1 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
