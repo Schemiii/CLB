@@ -87,14 +87,21 @@
                                     <segue destination="Ehm-1r-mPG" kind="modal" identifier="ShowJumper" id="vPW-Zo-tWh"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="9Zo-8n-tHu">
-                                <rect key="frame" x="221" y="196" width="161" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GDj-kJ-Oxu">
+                                <rect key="frame" x="134" y="71" width="174" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                            </segmentedControl>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="JumperSync">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testOutput:" destination="2" eventType="touchUpInside" id="HoY-Jb-GqK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -388,16 +395,10 @@
                 <relationship kind="outlet" name="mainView" candidateClass="DipView"/>
             </relationships>
         </class>
-        <class className="JumperSegmentedControl" superclassName="UISegmentedControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JumperSegmentedControl.h"/>
-        </class>
         <class className="JumperViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JumperViewController.h"/>
             <relationships>
                 <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="test:"/>
-                <relationship kind="outlet" name="aJumper" candidateClass="JumperSegmentedControl"/>
-                <relationship kind="outlet" name="jumperScrView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
             </relationships>
         </class>

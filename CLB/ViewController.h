@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "DipViewController.h"
-
+#import "JumperViewController.h"
 @class CLB;
 @class Scheduler;
-@interface ViewController : UIViewController <UINavigationControllerDelegate,DipDelegate>
+@interface ViewController : UIViewController <UINavigationControllerDelegate,DipDelegate,JumperDelegate>
 @property (nonatomic) CLB *clb;
 - (IBAction)debugF1:(id)sender;
 - (IBAction)debugF2:(id)sender;
+- (IBAction)testOutput:(id)sender;
 
 - (IBAction)debug:(id)sender;
 @property (nonatomic) Scheduler *schedule;

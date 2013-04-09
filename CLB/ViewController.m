@@ -41,9 +41,33 @@
   //Todo test this later on...
   [schedule insertEvents:  [clb setJumperFeedBackCF1withPos:1]];
   [schedule insertEvents:  [clb setJumperFeedBackDF2withPos:1]];
-  [schedule insertEvents: [clb setJumperClockModeSelectwithPos:0]];
-  [schedule insertEvents: [clb setJumperClockSelectwithPos:0]];
+  [schedule insertEvents:  [clb setJumperSynchronicityF1withPos:2]];
+  [schedule insertEvents:  [clb setJumperSynchronicityF2withPos:2]];
+  [schedule insertEvents:  [clb setJumperClockSelectwithPos:2]];
+  [schedule insertEvents:  [clb setJumperClockModeSelectwithPos:1]];
 }
+
+- (void)didReceiveMemoryWarning
+{
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
+}
+
+- (void)simulate {
+  @try {
+    if(!isPaused){
+      [self.schedule handleEvents];
+    }
+  }
+  @catch (CombinatoricLoopException *exception) {
+    isPaused=YES;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler" message:@"Kombinatorische Schleife endeckt. Beheben und Simulation neu starten." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alert show];
+    [simulationTimer invalidate];
+  }
+}
+
+//****Navigation Controller
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
   if(viewController){
@@ -53,28 +77,13 @@
       [(DipViewController*)viewController setup];
     }if([viewController respondsToSelector:@selector(setupWithJumperSetup:)]){
       //TODO Change this appropriate and set delegate
-      [(JumperViewController*)viewController setupWithJumperSetup:JUMPERSYNCXY];
+      [(JumperViewController*) viewController setJumperDelegate:self ];
+      [(JumperViewController*)viewController setupWithJumperSetup:JUMPERTOP];
+      
     }
   }
 }
-
-
-- (void)dipPicker:(DipViewController *)picker DidSetDipAToValue:(Byte)dipA andDipBToValue:(Byte)dipB andDipCToValue:(Byte)dipC andDipDToValue:(Byte)dipD{
-  //Change input signals
-  [schedule insertEvents:[clb setDIPWithIndex:0 andValue:dipA]];
-  [schedule insertEvents:[clb setDIPWithIndex:1 andValue:dipB]];
-  [schedule insertEvents:[clb setDIPWithIndex:2 andValue:dipC]];
-  [schedule insertEvents:[clb setDIPWithIndex:3 andValue:dipD]];
-  
-  }
-- (NSArray *)getDipValues{
-  return [[NSArray alloc]initWithObjects:
-          [NSNumber numberWithInt:[[clb getASignal]getSignalValue]],
-          [NSNumber numberWithInt:[[clb getBSignal]getSignalValue]],
-          [NSNumber numberWithInt:[[clb getCSignal]getSignalValue]],
-          [NSNumber numberWithInt:[[clb getDSignal]getSignalValue]],
-          nil];
-}
+//*****Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
   UINavigationController *navi;
   if([segue.identifier isEqualToString:@"ShowDip"]){
@@ -85,26 +94,108 @@
     [navi setDelegate:self];
   }
 }
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
-- (void)simulate {
-  @try {
-    if(!isPaused){
-        [self.schedule handleEvents];
-    }
+
+//*******DipDelegate
+- (void)dipPicker:(DipViewController *)picker DidSetDipAToValue:(Byte)dipA andDipBToValue:(Byte)dipB andDipCToValue:(Byte)dipC andDipDToValue:(Byte)dipD{
+  //Change input signals
+  [schedule insertEvents:[clb setDIPWithIndex:0 andValue:dipA]];
+  [schedule insertEvents:[clb setDIPWithIndex:1 andValue:dipB]];
+  [schedule insertEvents:[clb setDIPWithIndex:2 andValue:dipC]];
+  [schedule insertEvents:[clb setDIPWithIndex:3 andValue:dipD]];
+  
+}
+- (NSArray *)getDipValues{
+  return [[NSArray alloc]initWithObjects:
+          [NSNumber numberWithInt:[[clb getASignal]getSignalValue]],
+          [NSNumber numberWithInt:[[clb getBSignal]getSignalValue]],
+          [NSNumber numberWithInt:[[clb getCSignal]getSignalValue]],
+          [NSNumber numberWithInt:[[clb getDSignal]getSignalValue]],
+          nil];
+}
+//******************
+
+//***********JumperDelegate
+- (NSArray*) getJumpersForJumpersetup:(JumperSetup)setup{
+  NSMutableArray *arr = [[NSMutableArray alloc] init];
+  switch(setup){
+    case JUMPERF1:
+      //Positionen auslesen und übergeben
+      arr=self.clb.jumperF1.jumpers;
+      break;
+    case JUMPERF2:
+      arr=self.clb.jumperF2.jumpers;
+      break;
+    case JUMPERFEEDBACK:
+      arr=self.clb.jumperFeedback;
+      break;
+    case JUMPERSYNCF1F2:
+      arr=self.clb.jumperSynchronicity;
+      break;
+    case JUMPERXY:
+      arr=[NSArray arrayWithObjects:self.clb.jumperX.jumpers,self.clb.jumperY.jumpers, nil];
+      break;
+    case JUMPERCLOCK:
+      arr=[NSArray arrayWithObjects:self.clb.jumperClockSelect,self.clb.jumperClockModeSelect, nil];
+      break;
+    case JUMPERLEFT:
+      arr=self.clb.inputJumperLeft;
+      break;
+    case JUMPERTOP:
+      arr=self.clb.inputJumperTop;
+      break;
+    default:
+      break;
   }
-  @catch (CombinatoricLoopException *exception) {
-    isPaused=YES;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler" message:@"Kombinatorische Schleife endeckt. Beheben und Simulation neu starten." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-    [alert show];
-    [simulationTimer invalidate];
+  return arr;
+}
+
+- (void)setJumperValueForJumperWithM:(NSInteger)m AndN:(NSInteger)n AndValue:(NSInteger)value forJumperSetup:(JumperSetup)setup{
+  switch(setup){
+    case JUMPERF1:
+      [schedule insertEvents:[clb setJumperF1withM:m andN:n andPos:value]];
+      break;
+    case JUMPERF2:
+      [schedule insertEvents:[clb setJumperF2withM:m andN:n andPos:value]];
+      break;
+    case JUMPERFEEDBACK:
+      if(n==0)
+        [schedule insertEvents:[clb setJumperFeedBackCF1withPos:value]];
+      if(n==1)
+        [schedule insertEvents:[clb setJumperFeedBackDF2withPos:value]];
+      break;
+    case JUMPERSYNCF1F2:
+      if(n==0)
+        [schedule insertEvents:[clb setJumperSynchronicityF1withPos:value]];
+      if(n==1)
+        [schedule insertEvents:[clb setJumperSynchronicityF2withPos:value]];
+      break;
+    case JUMPERXY:
+      //X
+      if(m==0 || m==1){
+        //[clb setJumperXwithM:m andN:n andPos:value];
+        [schedule insertEvents:[clb setJumperXwithM:m andN:n andPos:value]];
+      }
+      //Y
+      if(m==2 || m==3){
+        [clb setJumperYwithM:m-2 andN:n andPos:value];
+        //[schedule insertEvents:[clb setJumperYwithM:m-2 andN:n andPos:value]];
+      }
+      break;
+    case JUMPERCLOCK:
+      if(m==0)
+        [schedule insertEvents:[self.clb setJumperClockSelectwithPos:value]];
+      if(m==1){
+        [schedule insertEvents:[self.clb setJumperClockModeSelectwithPos:value]];
+      }
+      break;
+    default:
+      break;
   }
 }
+
+//*************************
 - (IBAction)debugF1:(id)sender {
   for (int i=0; i<[clb.jumperF1.rowAnd count]; i++) {
     NSMutableArray *jumpers=[clb.jumperF1.jumpers objectAtIndex:i];
@@ -122,6 +213,10 @@
       NSLog(@"(m,n) : (%d,%d) = %d",i,j,[[jumpers objectAtIndex:j] getPosition]);
     }
   }
+}
+
+- (IBAction)testOutput:(id)sender {
+  [schedule insertEvents: [clb setJumperXwithM:0 andN:0 andPos:0]];
 }
 
 - (IBAction)debug:(id)sender {

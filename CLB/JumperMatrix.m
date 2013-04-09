@@ -91,7 +91,7 @@
 
 - (SignalEvent *)setJumperPositionInRow:(NSInteger)m WithColumn:(NSInteger)n ToPosition:(NSInteger)position{
   [self.schedule insertSignalEvent:[[[self.jumpers objectAtIndex:m] objectAtIndex:n] setPosition:position]];
-  return [[SignalEvent alloc] init:[[self getInfluencesEvents] objectAtIndex:0]];
+  return [[SignalEvent alloc] init:[self.influences objectAtIndex:0]];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "SignalEventQueue.h"
 #import "SignalEvent.h"
-
+#import "Connection.h"
 @implementation SignalEventQueue
 - (id)init{
   self = [super init];

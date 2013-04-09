@@ -12,6 +12,7 @@
 #import "SignalEvent.h"
 #import "SignalEventQueue.h"
 #import "CombinatoricLoopException.h"
+#import "CLB.h"
 @interface ManagingComponent()
   @property (readwrite) SignalEvent* current;
   @property (readwrite) NSMutableArray* inForward;
@@ -83,13 +84,11 @@
   while (![schedule isEmpty]){
     
     current=[schedule remove];
-    
-    if(!([current.connection forwarding])&&[[current getFromComponent] executable]){
-      
+    if(!(current.connection.forwarding &&
+         current.getFromComponent.executable)){
       Component *comp =[current getFromComponent];
       [comp action];
     }
-    
     if([current.connection isConnected]&&[current.connection signalChanged]&&[[current getFromComponent] updateable]){
       
       [current.connection signalUpdate];
