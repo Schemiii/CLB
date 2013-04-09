@@ -506,7 +506,7 @@
         [self.mainView addSubview:text];
       }
       [CLK setSelectedSegmentIndex:[[jumpers objectAtIndex:0] getPosition]-1];
-      [CLKMODE setSelectedSegmentIndex:[[jumpers objectAtIndex:0] getPosition]-1];
+      [CLKMODE setSelectedSegmentIndex:[[jumpers objectAtIndex:1] getPosition]-1];
       [CLK addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
       [CLKMODE addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
       [self.mainView addSubview:CLK];

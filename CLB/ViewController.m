@@ -19,11 +19,14 @@
 
 @interface ViewController ()
 @property (nonatomic) NSTimer *simulationTimer;
+@property (nonatomic) NSTimer *outputTimer;
+@property (nonatomic) JumperSetup selection;
 @property (atomic) BOOL isPaused;
+
 @end
 
 @implementation ViewController
-@synthesize clb,schedule,simulationTimer,isPaused;
+@synthesize clb,schedule,simulationTimer,isPaused,outputTimer,selection;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,8 +38,10 @@
   schedule = [[Scheduler alloc] init];
   //Create background timer to simulate CLB
   simulationTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(simulate) userInfo:nil repeats:YES];
-  //simulationTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(simulate) userInfo:nil repeats:YES];
+  outputTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(updateInterface) userInfo:nil repeats:YES];
   [[NSRunLoop currentRunLoop] addTimer:simulationTimer forMode:NSRunLoopCommonModes];
+  [[NSRunLoop currentRunLoop] addTimer:outputTimer forMode:NSRunLoopCommonModes];
+  
   isPaused=NO;
   //Todo test this later on...
   [schedule insertEvents:  [clb setJumperFeedBackCF1withPos:1]];
@@ -44,7 +49,7 @@
   [schedule insertEvents:  [clb setJumperSynchronicityF1withPos:2]];
   [schedule insertEvents:  [clb setJumperSynchronicityF2withPos:2]];
   [schedule insertEvents:  [clb setJumperClockSelectwithPos:2]];
-  [schedule insertEvents:  [clb setJumperClockModeSelectwithPos:1]];
+  [schedule insertEvents:  [clb setJumperClockModeSelectwithPos:1]];  
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,7 +57,26 @@
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
-
+- (void) updateInterface{
+  
+  //Collect Signals and update Interface
+  [self.OutA setOn:[[clb getASignal]getSignalValue]];
+  [self.OutB setOn:[[clb getBSignal]getSignalValue]];
+  [self.OutC setOn:[[clb getCSignal]getSignalValue]];
+  [self.OutD setOn:[[clb getDSignal]getSignalValue]];
+  [self.OutF1 setOn:[[clb getF1Signal] getSignalValue]];
+  [self.OutF2 setOn:[[clb getF2Signal] getSignalValue]];
+  [self.OutX setOn:[[clb getXSignal] getSignalValue]];
+  [self.OutY setOn:[[clb getYSignal] getSignalValue]];
+  [self.OutA setNeedsDisplay];
+  [self.OutB setNeedsDisplay];
+  [self.OutC setNeedsDisplay];
+  [self.OutD setNeedsDisplay];
+  [self.OutF1 setNeedsDisplay];
+  [self.OutF2 setNeedsDisplay];
+  [self.OutX setNeedsDisplay];
+  [self.OutY setNeedsDisplay];
+}
 - (void)simulate {
   @try {
     if(!isPaused){
@@ -75,23 +99,30 @@
       //Its the DipViewController
       [(DipViewController*)viewController setDipDelegate:self];
       [(DipViewController*)viewController setup];
-    }if([viewController respondsToSelector:@selector(setupWithJumperSetup:)]){
+    }if([viewController respondsToSelector:@selector(setJumperDelegate:)]){
       //TODO Change this appropriate and set delegate
       [(JumperViewController*) viewController setJumperDelegate:self ];
-      [(JumperViewController*)viewController setupWithJumperSetup:JUMPERTOP];
-      
+      [(JumperViewController*) viewController setupWithJumperSetup:self.selection];
     }
   }
 }
 //*****Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-  UINavigationController *navi;
-  if([segue.identifier isEqualToString:@"ShowDip"]){
-    navi = [segue destinationViewController];
-    [navi setDelegate:self];
-  }else if([segue.identifier isEqualToString:@"ShowJumper"]){
-    navi=[segue destinationViewController];
-    [navi setDelegate:self];
+  UINavigationController *navi= [segue destinationViewController];
+  [navi setDelegate:self];
+  
+  if([segue.identifier isEqualToString:@"ShowJumperSync"]){
+    selection = JUMPERSYNCF1F2;
+  }else if([segue.identifier isEqualToString:@"ShowJumperF1"]){
+    selection=JUMPERF1;
+  }else if([segue.identifier isEqualToString:@"ShowJumperF2"]){
+    selection=JUMPERF2;
+  }else if([segue.identifier isEqualToString:@"ShowJumperClock"]){
+    selection=JUMPERCLOCK;
+  }else if([segue.identifier isEqualToString:@"ShowJumperXY"]){
+    selection=JUMPERXY;
+  }else if([segue.identifier isEqualToString:@"ShowJumperInput"]){
+    selection=JUMPERFEEDBACK;
   }
 }
 
@@ -174,13 +205,11 @@
     case JUMPERXY:
       //X
       if(m==0 || m==1){
-        //[clb setJumperXwithM:m andN:n andPos:value];
         [schedule insertEvents:[clb setJumperXwithM:m andN:n andPos:value]];
       }
       //Y
       if(m==2 || m==3){
-        [clb setJumperYwithM:m-2 andN:n andPos:value];
-        //[schedule insertEvents:[clb setJumperYwithM:m-2 andN:n andPos:value]];
+        [schedule insertEvents:[clb setJumperYwithM:m-2 andN:n andPos:value]];
       }
       break;
     case JUMPERCLOCK:
@@ -190,44 +219,15 @@
         [schedule insertEvents:[self.clb setJumperClockModeSelectwithPos:value]];
       }
       break;
+    case JUMPERLEFT:
+      [schedule insertEvents:[self.clb setInputJumperLeftwithIndex:m andPos:value]];
+      break;
+    case JUMPERTOP:
+      [schedule insertEvents:[self.clb setInputJumperTopwithIndex:m andPos:value]];
+      break;
     default:
       break;
   }
-}
-
-//*************************
-- (IBAction)debugF1:(id)sender {
-  for (int i=0; i<[clb.jumperF1.rowAnd count]; i++) {
-    NSMutableArray *jumpers=[clb.jumperF1.jumpers objectAtIndex:i];
-    for(int j=0;j<[jumpers count];j++){
-      NSLog(@"(m,n) : (%d,%d) = %d",i,j,[[jumpers objectAtIndex:j] getPosition]);
-    }
-  }
-
-}
-
-- (IBAction)debugF2:(id)sender {
-  for (int i=0; i<[clb.jumperF2.rowAnd count]; i++) {
-    NSMutableArray *jumpers=[clb.jumperF1.jumpers objectAtIndex:i];
-    for(int j=0;j<[jumpers count];j++){
-      NSLog(@"(m,n) : (%d,%d) = %d",i,j,[[jumpers objectAtIndex:j] getPosition]);
-    }
-  }
-}
-
-- (IBAction)testOutput:(id)sender {
-  [schedule insertEvents: [clb setJumperXwithM:0 andN:0 andPos:0]];
-}
-
-- (IBAction)debug:(id)sender {
-  NSLog(@"A : %d",[[clb getASignal] getSignalValue]);
-  NSLog(@"B : %d",[[clb getBSignal] getSignalValue]);
-  NSLog(@"C: %d",[[clb getCSignal] getSignalValue]);
-  NSLog(@"D : %d",[[clb getDSignal] getSignalValue]);
-  NSLog(@"F1 : %d",[[clb getF1Signal] getSignalValue]);
-  NSLog(@"F2 : %d",[[clb getF2Signal] getSignalValue]);
-  NSLog(@"X : %d",[[clb getXSignal]getSignalValue]);
-  NSLog(@"Y : %d",[[clb getYSignal]getSignalValue]);
 }
 
 @end
