@@ -12,10 +12,11 @@
 #import "JumperDouble.h"
 @interface JumperViewController ()
 @property NSArray *jumpers;
+@property UIColor *backgroundcolor;
 @end
 
 @implementation JumperViewController
-@synthesize jumperSetup,jumpers,scvr;
+@synthesize jumperSetup,jumpers,scvr,backgroundcolor;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,6 +27,8 @@
 }
 
 - (void)setupWithJumperSetup:(JumperSetup)setup{
+  //backgroundcolor=[UIColor colorWithRed:19./255. green:204./255. blue:179./255. alpha:1.];
+  backgroundcolor=self.mainView.backgroundColor;
   jumperSetup=setup;
   //Create appropriate numbers of segmented controls
   jumpers=[self.jumperDelegate getJumpersForJumpersetup:jumperSetup];
@@ -66,6 +69,7 @@
           jump.frame=segmentrect;
           [jump setSelectedSegmentIndex:[[[jumpers objectAtIndex:i]objectAtIndex:j] getPosition]-1];
           [jump addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
+          l.backgroundColor=backgroundcolor;
           [scvr addSubview:l];
           [scvr addSubview:jump];
           }
@@ -95,11 +99,13 @@
           text.text=@"D";
         else if(i==7)
           text.text=@"¬D";
+        text.backgroundColor=backgroundcolor;
         [self.mainView addSubview:text];
       }
       r.origin.x=10;
       UILabel *jumpername = [[UILabel alloc] initWithFrame:r];
       jumpername.text=@"F1";
+      jumpername.backgroundColor=backgroundcolor;
       [self.view addSubview:jumpername];
       [self.view addSubview:scvr];
       break;
@@ -136,6 +142,7 @@
           labelrect.origin.y=INTERFACEJUMPERVIEWJUMPERHEIGHT*i+2;
           l = [[UILabel alloc] initWithFrame:labelrect];
           l.text=[NSString stringWithFormat:@"m2%d",i+1];
+          l.backgroundColor=backgroundcolor;
           jump = [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"",@"", nil] withRow:i andColumn:j];
           jump.frame=segmentrect;
           [jump setSelectedSegmentIndex:[[[jumpers objectAtIndex:i]objectAtIndex:j] getPosition]-1];
@@ -169,11 +176,13 @@
           text.text=@"D";
         else if(i==7)
           text.text=@"~D";
+        text.backgroundColor=backgroundcolor;
         [self.mainView addSubview:text];
       }
       r.origin.x=10;
       UILabel *jumpername = [[UILabel alloc] initWithFrame:r];
       jumpername.text=@"F2";
+      jumpername.backgroundColor=backgroundcolor;
       [self.view addSubview:jumpername];
       [self.view addSubview:scvr];
       break;
@@ -211,6 +220,7 @@
           text.text=@"D";
         else if(i==3)
           text.text=@"F2";
+        text.backgroundColor=backgroundcolor;
         [self.mainView addSubview:text];
       }
       
@@ -254,6 +264,8 @@
       r.origin.x+=INTERFACEJUMPERVIEWJUMPERWIDTH/2.;
       UILabel *async=[[UILabel alloc] initWithFrame:r];
       async.text=@"Async";
+      l1.backgroundColor=backgroundcolor;
+      l2.backgroundColor=backgroundcolor;
       [self.mainView addSubview:sync];
       [self.mainView addSubview:async];
       [self.mainView addSubview:l2];
@@ -287,6 +299,7 @@
           text.text=@"F2";
         else if(i==3)
           text.text=@"¬F2";
+        text.backgroundColor=backgroundcolor;
         [self.mainView addSubview:text];
       }
       s=r;
@@ -296,10 +309,12 @@
       s.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT/2.+5;
       text=[[UILabel alloc] initWithFrame:s];
       text.text=@"X";
+      text.backgroundColor=backgroundcolor;
       [self.mainView addSubview:text];
       s.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT*2.;
       text=[[UILabel alloc] initWithFrame:s];
       text.text=@"Y";
+      text.backgroundColor=backgroundcolor;
       [self.mainView addSubview:text];
       for (int j=0; j<2; j++) {
         for (int i=0; i<4; i++) {
@@ -382,6 +397,12 @@
       //d.text=@"D";
       x.text=@"X";
       y.text=@"Y";
+      a.backgroundColor=backgroundcolor;
+      b.backgroundColor=backgroundcolor;
+      //c.backgroundColor=backgroundcolor;
+      //d.backgroundColor=backgroundcolor;
+      x.backgroundColor=backgroundcolor;
+      y.backgroundColor=backgroundcolor;
       [self.mainView addSubview:a];
       [self.mainView addSubview:b];
       //[self.mainView addSubview:c];
@@ -457,6 +478,12 @@
       d.text=@"D";
       x.text=@"X";
       y.text=@"Y";
+      //a.backgroundColor=backgroundcolor;
+      //b.backgroundColor=backgroundcolor;
+      c.backgroundColor=backgroundcolor;
+      d.backgroundColor=backgroundcolor;
+      x.backgroundColor=backgroundcolor;
+      y.backgroundColor=backgroundcolor;
       //[self.mainView addSubview:a];
       //[self.mainView addSubview:b];
       [self.mainView addSubview:c];
@@ -503,6 +530,7 @@
         }
         else if(i==3)
           text.text=@"MAN";
+        text.backgroundColor=backgroundcolor;
         [self.mainView addSubview:text];
       }
       [CLK setSelectedSegmentIndex:[[jumpers objectAtIndex:0] getPosition]-1];
@@ -540,24 +568,6 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)done:(id)sender {
-  switch (jumperSetup) {
-    case JUMPERF1:{
-      //Read out all subview values from scvr
-      NSLog(@"Return F1 Stuff");
-      break;
-    }
-    case JUMPERF2:
-      NSLog(@"Return F2 Stuff");
-      break;
-    case JUMPERFEEDBACK:
-      NSLog(@"Return Feedback");
-      break;
-    case JUMPERCLOCK:
-      NSLog(@"Jumper Clock");
-      break;
-    default:
-      break;
-  }
   [self dismissViewControllerAnimated:NO completion:nil];
 }
 
