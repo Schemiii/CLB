@@ -81,6 +81,7 @@
   @try {
     if(!isPaused){
       [self.schedule handleEvents];
+      
     }
   }
   @catch (CombinatoricLoopException *exception) {

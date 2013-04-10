@@ -87,7 +87,10 @@
     if(!(current.connection.forwarding &&
          current.getFromComponent.executable)){
       Component *comp =[current getFromComponent];
-      [comp action];
+      if([comp isMemberOfClass:[CLB class]] && current.connection.to == nil){
+        //NSLog(@"Blocked rekursion");
+      }else
+        [comp action];
     }
     if([current.connection isConnected]&&[current.connection signalChanged]&&[[current getFromComponent] updateable]){
       

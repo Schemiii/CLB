@@ -15,8 +15,8 @@
 #import "Signal.h"
 
 @interface Scheduler()
-@property (nonatomic) SignalEvent* current;
-@property (nonatomic) NSMutableArray *updatedComponents;
+@property (strong,nonatomic) SignalEvent* current;
+@property (strong,nonatomic) NSMutableArray *updatedComponents;
 @end
 @implementation Scheduler
 @synthesize schedule,current,updatedComponents;

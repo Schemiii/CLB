@@ -14,7 +14,7 @@
 @class Scheduler;
 @interface ViewController : UIViewController <UINavigationControllerDelegate,DipDelegate,JumperDelegate>
 @property (nonatomic) CLB *clb;
-@property (nonatomic) Scheduler *schedule;
+@property (strong,nonatomic) Scheduler *schedule;
 @property (weak, nonatomic) IBOutlet LEDView *OutA;
 @property (weak, nonatomic) IBOutlet LEDView *OutB;
 @property (weak, nonatomic) IBOutlet LEDView *OutC;

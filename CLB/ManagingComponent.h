@@ -11,7 +11,7 @@
 @class SignalEvent;
 @class SignalEventQueue;
 @interface ManagingComponent : Component
-@property (readonly) SignalEventQueue* schedule;
+@property (strong,readonly) SignalEventQueue* schedule;
 - (void) createComponents;
 - (void) connectInnerComponents;
 - (void) initialize;
