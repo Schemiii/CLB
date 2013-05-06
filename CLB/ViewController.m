@@ -14,7 +14,7 @@
 #import "Signal.h"
 #import "JumperDouble.h"
 #import "Scheduler.h"
-
+#import "Clock.h"
 #import "JumperMatrix.h"
 
 @interface ViewController ()
@@ -33,16 +33,17 @@
 	// Do any additional setup after loading the view, typically from a nib.
   
   clb = [[CLB alloc] init:@"My CLB"];
-
-  
   schedule = [[Scheduler alloc] init];
+  //Assign our schedule to the clocks parentschedule
+  clb.clockAutomatic.parentSchedule=schedule.schedule;
   //Create background timer to simulate CLB
   simulationTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(simulate) userInfo:nil repeats:YES];
   outputTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(updateInterface) userInfo:nil repeats:YES];
   [[NSRunLoop currentRunLoop] addTimer:simulationTimer forMode:NSRunLoopCommonModes];
-  [[NSRunLoop currentRunLoop] addTimer:outputTimer forMode:NSRunLoopCommonModes];
   
+  [[NSRunLoop currentRunLoop] addTimer:outputTimer forMode:NSRunLoopCommonModes];
   isPaused=NO;
+
   //Todo test this later on...
   [schedule insertEvents:  [clb setJumperFeedBackCF1withPos:1]];
   [schedule insertEvents:  [clb setJumperFeedBackDF2withPos:1]];
@@ -51,7 +52,10 @@
   [schedule insertEvents:  [clb setJumperClockSelectwithPos:2]];
   [schedule insertEvents:  [clb setJumperClockModeSelectwithPos:1]];  
 }
-
+- (void)viewDidAppear:(BOOL)animated{
+  [super viewDidAppear:animated];
+  [self becomeFirstResponder];
+}
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
@@ -81,14 +85,12 @@
   @try {
     if(!isPaused){
       [self.schedule handleEvents];
-      
     }
   }
   @catch (CombinatoricLoopException *exception) {
     isPaused=YES;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler" message:@"Kombinatorische Schleife endeckt. Beheben und Simulation neu starten." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CombinatoricError" message:@"Combinatoric Loop detected! Reconfigure and shake to restart" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [alert show];
-    [simulationTimer invalidate];
   }
 }
 
@@ -127,7 +129,19 @@
   }
 }
 
+//*****Detect the shakes
+- (BOOL)canBecomeFirstResponder{
+  return YES;
+}
 
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+  if(motion == UIEventSubtypeMotionShake)
+  {
+    if(isPaused){
+      isPaused=NO;
+    }
+  }
+}
 
 //*******DipDelegate
 - (void)dipPicker:(DipViewController *)picker DidSetDipAToValue:(Byte)dipA andDipBToValue:(Byte)dipB andDipCToValue:(Byte)dipC andDipDToValue:(Byte)dipD{
@@ -231,4 +245,23 @@
   }
 }
 
+- (IBAction)tapA:(id)sender {
+  self.OutA.On=!self.OutA.On;
+  [schedule insertEvents:[clb setDIPWithIndex:0 andValue:self.OutA.On?1:0]];
+}
+
+- (IBAction)tapB:(id)sender {
+  self.OutB.On=!self.OutB.On;
+  [schedule insertEvents:[clb setDIPWithIndex:1 andValue:self.OutB.On?1:0]];
+}
+
+- (IBAction)tapC:(id)sender {
+  self.OutC.On=!self.OutC.On;
+  [schedule insertEvents:[clb setDIPWithIndex:2 andValue:self.OutC.On?1:0]];
+}
+
+- (IBAction)tapD:(id)sender {
+  self.OutD.On=!self.OutD.On;
+  [schedule insertEvents:[clb setDIPWithIndex:3 andValue:self.OutD.On?1:0]];
+}
 @end

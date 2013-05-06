@@ -146,6 +146,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DEC8992D1737AEA700DE256A /* old */ = {
+			isa = PBXGroup;
+			children = (
+				DED3BF0816FEF9FF0097040C /* DipView.h */,
+				DED3BF0916FEF9FF0097040C /* DipView.m */,
+				DED3BF0B16FEFA0E0097040C /* DipViewController.h */,
+				DED3BF0C16FEFA0E0097040C /* DipViewController.m */,
+			);
+			name = old;
+			sourceTree = "<group>";
+		};
 		DED3BF1016FEFF120097040C /* Pic */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,10 +215,7 @@
 				DE5E22841701DECD007C1ABB /* JumperSegmentedControl.m */,
 				DEE695B716F9C27400CF86F7 /* ViewController.h */,
 				DEE695B816F9C27400CF86F7 /* ViewController.m */,
-				DED3BF0816FEF9FF0097040C /* DipView.h */,
-				DED3BF0916FEF9FF0097040C /* DipView.m */,
-				DED3BF0B16FEFA0E0097040C /* DipViewController.h */,
-				DED3BF0C16FEFA0E0097040C /* DipViewController.m */,
+				DEC8992D1737AEA700DE256A /* old */,
 				DEE695A316F9C27400CF86F7 /* Supporting Files */,
 			);
 			path = CLB;

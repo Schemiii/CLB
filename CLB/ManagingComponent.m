@@ -50,12 +50,8 @@
   }
   [updatedComponents removeAllObjects];
   
-  @try {
-    [self handleSchedule];
-  }
-  @catch (CombinatoricLoopException *exception) {
-    NSLog(@"%@",[NSThread callStackSymbols]);
-  }
+  [self handleSchedule];
+
 }
 
 - (void)initialize{
@@ -86,11 +82,14 @@
     current=[schedule remove];
     if(!(current.connection.forwarding &&
          current.getFromComponent.executable)){
+      
       Component *comp =[current getFromComponent];
-      if([comp isMemberOfClass:[CLB class]] && current.connection.to == nil){
+      /*
+       if([comp isMemberOfClass:[CLB class]] && current.connection.to == nil){
         //NSLog(@"Blocked rekursion");
       }else
-        [comp action];
+       */
+      [comp action];
     }
     if([current.connection isConnected]&&[current.connection signalChanged]&&[[current getFromComponent] updateable]){
       

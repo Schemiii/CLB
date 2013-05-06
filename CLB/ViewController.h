@@ -24,4 +24,9 @@
 @property (weak, nonatomic) IBOutlet LEDView *OutX;
 @property (weak, nonatomic) IBOutlet LEDView *OutY;
 
+- (IBAction)tapA:(id)sender;
+- (IBAction)tapB:(id)sender;
+- (IBAction)tapC:(id)sender;
+- (IBAction)tapD:(id)sender;
+
 @end
