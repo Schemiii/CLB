@@ -122,7 +122,7 @@
   
   [jumperSynchronicity insertObject:[[JumperDouble alloc] initWithName:@"SyncAsyncF1"] atIndex:0];
   [[jumperSynchronicity objectAtIndex:0] setPositionNoneSignal:[Signal on]];
-  [jumperSynchronicity insertObject:[[JumperDouble alloc] initWithName:@"SyncAsyncF2"] atIndex:0];
+  [jumperSynchronicity insertObject:[[JumperDouble alloc] initWithName:@"SyncAsyncF2"] atIndex:1];
   [[jumperSynchronicity objectAtIndex:1] setPositionNoneSignal:[Signal on]];
   
   [flipFlops insertObject:[[DFlipFlop alloc] initWithName:[NSString stringWithFormat:@"%@ :FlipFlopF1",self.description]] atIndex:0];

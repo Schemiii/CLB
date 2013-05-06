@@ -188,25 +188,39 @@
       break;
     }
     case JUMPERFEEDBACK:{
-      self.navigationItem.title=@"Set Jumper Feedback";
-      JumperSegmentedControl *CF1,*DF2;
+      self.navigationItem.title=@"Set Jumper Feedback/Synchronicity";
+      JumperSegmentedControl *CF1,*DF2,*SYNCF1,*SYNCF2;
       CF1 = [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"",@"", nil] withRow:0 andColumn:0];
       DF2 = [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"",@"", nil] withRow:0 andColumn:1];
+      SYNCF1 = [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"",@"", nil] withRow:1 andColumn:0];
+      SYNCF2 = [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"",@"", nil] withRow:1 andColumn:1];
       CGRect r;
+
+      r.origin.x=self.mainView.bounds.size.width/2-INTERFACEJUMPERVIEWJUMPERWIDTH;
+      r.origin.y=self.mainView.bounds.size.height/5;
+      
       r.size.width = INTERFACEJUMPERVIEWJUMPERWIDTH;
       r.size.height=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      r.origin.x=self.mainView.bounds.size.width/2-INTERFACEJUMPERVIEWJUMPERWIDTH;
-      r.origin.y=self.mainView.bounds.size.height/2-INTERFACEJUMPERVIEWJUMPERHEIGHT/2;
       CF1.frame=r;
       r.origin.x+=INTERFACEJUMPERVIEWJUMPERWIDTH;
       DF2.frame=r;
-      [CF1 setSelectedSegmentIndex:[[jumpers objectAtIndex:0]getPosition]-1];
-      [DF2 setSelectedSegmentIndex:[[jumpers objectAtIndex:1]getPosition]-1];
+      r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT*2;
+      r.origin.x=self.mainView.bounds.size.width/2.-INTERFACEJUMPERVIEWJUMPERWIDTH/2.;
+      SYNCF1.frame=r;
+      r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
+      SYNCF2.frame=r;
+      [CF1 setSelectedSegmentIndex:[[[jumpers objectAtIndex:0]objectAtIndex:0]getPosition]-1];
+      [DF2 setSelectedSegmentIndex:[[[jumpers objectAtIndex:0] objectAtIndex:1]getPosition]-1];
+      [SYNCF1 setSelectedSegmentIndex:[[[jumpers objectAtIndex:1] objectAtIndex:0]getPosition]-1];
+      [SYNCF2 setSelectedSegmentIndex:[[[jumpers objectAtIndex:1] objectAtIndex:1]getPosition]-1];
+      
       [CF1 addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
       [DF2 addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
+      [SYNCF1 addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
+      [SYNCF2 addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
       UILabel *text;
       r.origin.x=self.mainView.bounds.size.width/2-INTERFACEJUMPERVIEWJUMPERWIDTH+15;
-      r.origin.y-=25;
+      r.origin.y=self.mainView.bounds.size.height/5-25;
       r.size.height=15;
       r.size.width=20;
       for(int i=0;i<4;i++){
@@ -223,9 +237,37 @@
         text.backgroundColor=backgroundcolor;
         [self.mainView addSubview:text];
       }
-      
+      r.origin.y=self.mainView.bounds.size.height/5 + INTERFACEJUMPERVIEWJUMPERHEIGHT*2 - 25;
+      r.origin.x=self.mainView.bounds.size.width/2-INTERFACEJUMPERVIEWJUMPERWIDTH/2.-10;
+      r.size.width=60;
+      for (int i=0; i<4; i++) {
+        text = [[UILabel alloc] initWithFrame:r];
+        text.backgroundColor=backgroundcolor;
+        if(i==0){
+          text.text=@"SYNC";
+          r.origin.x+=INTERFACEJUMPERVIEWJUMPERWIDTH/2.+10;
+        }
+        else if(i==1){
+          text.text=@"ASYNC";
+          r.size.width=20;
+          r.origin.x-=INTERFACEJUMPERVIEWJUMPERWIDTH-20;
+          r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
+        }
+        else if(i==2){
+          text.text=@"F1";
+          r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
+        }else if(i==3){
+          
+          text.text=@"F2";
+        }
+        [self.mainView addSubview:text];
+      }
+
       [self.mainView addSubview:CF1];
       [self.mainView addSubview:DF2];
+      
+      [self.mainView addSubview:SYNCF1];
+      [self.mainView addSubview:SYNCF2];
       break;
     }
     case JUMPERSYNCF1F2:{
@@ -502,22 +544,22 @@
     case JUMPERCLOCK:{
       self.navigationItem.title=@"Set Clock and Clock Mode";      
       JumperSegmentedControl *CLKMODE,*CLK;
-      CLK=[[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"",@"", nil] withRow:0 andColumn:0];
+//      CLK=[[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"",@"", nil] withRow:0 andColumn:0];
       CLKMODE=[[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"",@"", nil] withRow:1 andColumn:0];
       CGRect r;
       r.size.width =INTERFACEJUMPERVIEWJUMPERWIDTH;
       r.size.height=INTERFACEJUMPERVIEWJUMPERHEIGHT;
       r.origin.x=self.mainView.bounds.size.width/2-INTERFACEJUMPERVIEWJUMPERWIDTH;
       r.origin.y=self.mainView.bounds.size.height/2-INTERFACEJUMPERVIEWJUMPERHEIGHT/2;
-      CLK.frame=r;
-      r.origin.x+=INTERFACEJUMPERVIEWJUMPERWIDTH+20;
+//      CLK.frame=r;
+//      r.origin.x+=INTERFACEJUMPERVIEWJUMPERWIDTH+20;
       CLKMODE.frame=r;
-      r.origin.x=self.mainView.bounds.size.width/2-INTERFACEJUMPERVIEWJUMPERWIDTH+15;
+      r.origin.x=self.mainView.bounds.size.width/2-INTERFACEJUMPERVIEWJUMPERWIDTH;
       r.origin.y-=25;
       r.size.height=15;
       r.size.width=50;
       UILabel *text;
-      for(int i=0;i<4;i++){
+      for(int i=2;i<4;i++){
         text = [[UILabel alloc] initWithFrame:r];
         r.origin.x+=INTERFACEJUMPERVIEWJUMPERWIDTH/2;
         if(i==0)
@@ -533,11 +575,12 @@
         text.backgroundColor=backgroundcolor;
         [self.mainView addSubview:text];
       }
-      [CLK setSelectedSegmentIndex:[[jumpers objectAtIndex:0] getPosition]-1];
+//      [CLK setSelectedSegmentIndex:[[jumpers objectAtIndex:0] getPosition]-1];
+//      [CLK addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
+//      [self.mainView addSubview:CLK];
+      
       [CLKMODE setSelectedSegmentIndex:[[jumpers objectAtIndex:1] getPosition]-1];
-      [CLK addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
       [CLKMODE addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
-      [self.mainView addSubview:CLK];
       [self.mainView addSubview:CLKMODE];
       break;
     }
@@ -557,7 +600,6 @@
 
 - (void)valueChanged:(id)sender{
   JumperSegmentedControl *jump = (JumperSegmentedControl*) sender;
-  
   if(jump.lastIndex == jump.selectedSegmentIndex)
     jump.selectedSegmentIndex=-1;
   [self.jumperDelegate setJumperValueForJumperWithM:jump.m AndN:jump.n AndValue:jump.selectedSegmentIndex+1 forJumperSetup:jumperSetup];

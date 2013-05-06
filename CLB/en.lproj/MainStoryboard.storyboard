@@ -83,7 +83,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="plZ-lF-Zxn">
-                                <rect key="frame" x="185" y="246" width="99" height="35"/>
+                                <rect key="frame" x="185" y="237" width="99" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.074509803921568626" green="0.80000000000000004" blue="0.67843137254901964" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
@@ -126,11 +126,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hJe-gS-vTW">
-                                <rect key="frame" x="390" y="34" width="121" height="43"/>
+                                <rect key="frame" x="390" y="34" width="99" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.074509803921568626" green="0.80000000000000004" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Select Input">
+                                <state key="normal" title="Input">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -200,6 +200,22 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.074509803921568626" green="0.80000000000000004" blue="0.70196078431372544" alpha="1" colorSpace="deviceRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="63Z-Zf-jBR">
+                                <rect key="frame" x="314" y="237" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="CLK.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="manCLKDown:" destination="2" eventType="touchDown" id="lCe-If-bUs"/>
+                                    <action selector="manCLKUp:" destination="2" eventType="touchUpInside" id="VhI-Ju-jGq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.074509806931018829" green="0.80000007152557373" blue="0.70196080207824707" alpha="1" colorSpace="deviceRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -288,6 +304,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CLK.png" width="32" height="32"/>
         <image name="dipbackground.png" width="512" height="256"/>
     </resources>
     <classes>
@@ -304,6 +321,8 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="manCLKDown:"/>
+                <relationship kind="action" name="manCLKUp:"/>
                 <relationship kind="action" name="tapA:"/>
                 <relationship kind="action" name="tapB:"/>
                 <relationship kind="action" name="tapC:"/>

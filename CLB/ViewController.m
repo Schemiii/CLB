@@ -174,7 +174,7 @@
       arr=self.clb.jumperF2.jumpers;
       break;
     case JUMPERFEEDBACK:
-      arr=self.clb.jumperFeedback;
+      arr=[NSArray arrayWithObjects:self.clb.jumperFeedback ,self.clb.jumperSynchronicity, nil];
       break;
     case JUMPERSYNCF1F2:
       arr=self.clb.jumperSynchronicity;
@@ -206,16 +206,22 @@
       [schedule insertEvents:[clb setJumperF2withM:m andN:n andPos:value]];
       break;
     case JUMPERFEEDBACK:
-      if(n==0)
+      //TODO Restliches Zeug implementieren
+      if(n==0&&m==0)
         [schedule insertEvents:[clb setJumperFeedBackCF1withPos:value]];
-      if(n==1)
+      if(n==1&&m==0)
         [schedule insertEvents:[clb setJumperFeedBackDF2withPos:value]];
+      if(n==0&&m==1)
+        [schedule insertEvents:[clb setJumperSynchronicityF1withPos:value]];
+      if(n==1&&m==1)
+        [schedule insertEvents:[clb setJumperSynchronicityF2withPos:value]];
       break;
     case JUMPERSYNCF1F2:
       if(n==0)
         [schedule insertEvents:[clb setJumperSynchronicityF1withPos:value]];
       if(n==1)
         [schedule insertEvents:[clb setJumperSynchronicityF2withPos:value]];
+      
       break;
     case JUMPERXY:
       //X
@@ -264,4 +270,14 @@
   self.OutD.On=!self.OutD.On;
   [schedule insertEvents:[clb setDIPWithIndex:3 andValue:self.OutD.On?1:0]];
 }
+
+- (IBAction)manCLKDown:(id)sender {
+  [schedule insertEvents:[clb setClockButtonValue:1]];
+}
+
+- (IBAction)manCLKUp:(id)sender {
+  [schedule insertEvents:[clb setClockButtonValue:0]];
+}
+
+
 @end

@@ -17,6 +17,7 @@
 		DEB42437171456A000B8BD9E /* dipbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB42436171456A000B8BD9E /* dipbackground.png */; };
 		DEB4243B17145B3100B8BD9E /* Clock.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4243A17145B3100B8BD9E /* Clock.png */; };
 		DEB4243D17145C9500B8BD9E /* inputselect.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4243C17145C9500B8BD9E /* inputselect.png */; };
+		DEC8992F1737F75700DE256A /* CLK.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC8992E1737F75600DE256A /* CLK.png */; };
 		DED3BF0A16FEF9FF0097040C /* DipView.m in Sources */ = {isa = PBXBuildFile; fileRef = DED3BF0916FEF9FF0097040C /* DipView.m */; };
 		DED3BF0D16FEFA0E0097040C /* DipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DED3BF0C16FEFA0E0097040C /* DipViewController.m */; };
 		DED3BF0F16FEFF0B0097040C /* DIPSwitch.png in Resources */ = {isa = PBXBuildFile; fileRef = DED3BF0E16FEFF0B0097040C /* DIPSwitch.png */; };
@@ -67,6 +68,7 @@
 		DEB42436171456A000B8BD9E /* dipbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dipbackground.png; sourceTree = "<group>"; };
 		DEB4243A17145B3100B8BD9E /* Clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clock.png; sourceTree = "<group>"; };
 		DEB4243C17145C9500B8BD9E /* inputselect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inputselect.png; sourceTree = "<group>"; };
+		DEC8992E1737F75600DE256A /* CLK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CLK.png; sourceTree = "<group>"; };
 		DED3BF0816FEF9FF0097040C /* DipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DipView.h; sourceTree = "<group>"; };
 		DED3BF0916FEF9FF0097040C /* DipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DipView.m; sourceTree = "<group>"; };
 		DED3BF0B16FEFA0E0097040C /* DipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DipViewController.h; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				DEB4243A17145B3100B8BD9E /* Clock.png */,
 				DEB424341714559300B8BD9E /* DIPSwitchBackground.png */,
+				DEC8992E1737F75600DE256A /* CLK.png */,
 				DEB4243C17145C9500B8BD9E /* inputselect.png */,
 				DE5E22811701DD7D007C1ABB /* DipMiddle.png */,
 				DEB42436171456A000B8BD9E /* dipbackground.png */,
@@ -347,6 +350,7 @@
 				DEB42437171456A000B8BD9E /* dipbackground.png in Resources */,
 				DEB4243B17145B3100B8BD9E /* Clock.png in Resources */,
 				DEB4243D17145C9500B8BD9E /* inputselect.png in Resources */,
+				DEC8992F1737F75700DE256A /* CLK.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,5 +28,8 @@
 - (IBAction)tapB:(id)sender;
 - (IBAction)tapC:(id)sender;
 - (IBAction)tapD:(id)sender;
+- (IBAction)manCLKDown:(id)sender;
+- (IBAction)manCLKUp:(id)sender;
+
 
 @end
