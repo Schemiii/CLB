@@ -590,14 +590,41 @@
       break;
   }
 }
-
+//*** Framework functions
 - (void)viewDidLoad
 {
  [super viewDidLoad];
   jumpers = [[NSMutableArray alloc] init];
 }
 
-
+- (void)viewWillAppear:(BOOL)animated{
+  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(simulationStopped:) name:@"SimulationStopped" object:nil];
+  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(simulationContinued:) name:@"SimulationContinued" object:nil];
+}
+- (void) viewDidAppear:(BOOL)animated{
+  BOOL isSimulationPaused = [self.jumperDelegate getSimulationState];
+  if(isSimulationPaused)
+    self.view.alpha = 0.5;
+  else
+    self.view.alpha = 1.0;
+  
+}
+- (void)viewWillDisappear:(BOOL)animated{
+  [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+//*********************
+//*** Notification Functions
+- (void) simulationStopped : (NSNotification*) notification{
+  if([[notification name] isEqualToString:@"SimulationStopped"]){
+    [self dismissViewControllerAnimated:YES completion:nil];
+  }
+}
+- (void) simulationContinued : (NSNotification*) notification{
+  if([[notification name] isEqualToString:@"SimulationContinued"]){
+    self.view.alpha=1.0;
+  }
+}
+//*************************
 - (void)valueChanged:(id)sender{
   JumperSegmentedControl *jump = (JumperSegmentedControl*) sender;
   if(jump.lastIndex == jump.selectedSegmentIndex)
@@ -612,5 +639,16 @@
 - (IBAction)done:(id)sender {
   [self dismissViewControllerAnimated:NO completion:nil];
 }
+//*** Shake Detection
+- (BOOL)canBecomeFirstResponder{
+  return YES;
+}
 
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+  if(motion == UIEventSubtypeMotionShake)
+  {
+    [self.jumperDelegate doContinueSimulation];
+  }
+}
+//*******************
 @end

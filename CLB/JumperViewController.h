@@ -21,7 +21,11 @@ typedef enum{
   JUMPERCLOCK
 }JumperSetup;
 
+
+
 @protocol JumperDelegate <NSObject>
+- (BOOL) getSimulationState;//Should be a seperate protocol
+- (void) doContinueSimulation;//Should be a seperate protocol
 - (NSArray*) getJumpersForJumpersetup : (JumperSetup) setup;
 - (void) setJumperValueForJumperWithM : (NSInteger) m AndN :(NSInteger) n AndValue : (NSInteger) value forJumperSetup : (JumperSetup) setup;
 @end

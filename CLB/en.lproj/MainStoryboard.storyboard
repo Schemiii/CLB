@@ -313,9 +313,6 @@
                 <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
             </relationships>
         </class>
-        <class className="LEDView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LEDView.h"/>
-        </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>

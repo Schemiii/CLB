@@ -20,18 +20,18 @@
 @interface ViewController ()
 @property (nonatomic) NSTimer *simulationTimer;
 @property (nonatomic) NSTimer *outputTimer;
+@property NSTimer *simulationChangedTimer;
 @property (nonatomic) JumperSetup selection;
-@property (atomic) BOOL isPaused;
+@property (nonatomic)  BOOL isPaused;
 
 @end
 
 @implementation ViewController
-@synthesize clb,schedule,simulationTimer,isPaused,outputTimer,selection;
+@synthesize clb,schedule,simulationTimer,isPaused=_isPaused,outputTimer,selection,simulationChangedTimer;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-  
   clb = [[CLB alloc] init:@"My CLB"];
   schedule = [[Scheduler alloc] init];
   //Assign our schedule to the clocks parentschedule
@@ -40,18 +40,55 @@
   simulationTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(simulate) userInfo:nil repeats:YES];
   outputTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(updateInterface) userInfo:nil repeats:YES];
   [[NSRunLoop currentRunLoop] addTimer:simulationTimer forMode:NSRunLoopCommonModes];
-  
   [[NSRunLoop currentRunLoop] addTimer:outputTimer forMode:NSRunLoopCommonModes];
-  isPaused=NO;
-
-  //Todo test this later on...
+  
+  self.isPaused=NO;
   [schedule insertEvents:  [clb setJumperFeedBackCF1withPos:1]];
   [schedule insertEvents:  [clb setJumperFeedBackDF2withPos:1]];
   [schedule insertEvents:  [clb setJumperSynchronicityF1withPos:2]];
   [schedule insertEvents:  [clb setJumperSynchronicityF2withPos:2]];
   [schedule insertEvents:  [clb setJumperClockSelectwithPos:2]];
-  [schedule insertEvents:  [clb setJumperClockModeSelectwithPos:1]];  
+  [schedule insertEvents:  [clb setJumperClockModeSelectwithPos:1]];
+  
 }
+//***** Notification Functions
+- (void) simulationStopped : (NSNotification*) notification{
+  if([[notification name] isEqualToString:@"SimulationStopped"])
+    [self.view setAlpha:.5];
+}
+- (void) simulationContinued : (NSNotification*) notification{
+  if([[notification name] isEqualToString:@"SimulationContinued"])
+    if(self.view!=nil)
+      [self.view setAlpha:1];
+}
+//*****************************
+
+//*******Custom Setter/Getter
+- (void)setIsPaused:(BOOL)isPaused{
+  @synchronized(self){
+    BOOL p = _isPaused;
+    _isPaused=isPaused;
+    if(_isPaused!=p){
+      if(_isPaused){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SimulationStopped" object:self];
+      }
+      else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SimulationContinued" object:self];
+      }
+    }
+      
+  }
+}
+- (BOOL)isPaused{
+  BOOL t;
+  @synchronized(self){
+    t=_isPaused;
+  }
+  return t;
+}
+//****************************
+
+//**** Framework Functions
 - (void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear:animated];
   [self becomeFirstResponder];
@@ -61,6 +98,22 @@
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(simulationStopped:) name:@"SimulationStopped" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(simulationContinued:) name:@"SimulationContinued" object:nil];
+  if(self.isPaused){
+    if(self.view != nil)
+      self.view.alpha=0.5;
+  }else{
+    if(self.view != nil)
+      self.view.alpha=1.0;
+  }
+}
+- (void)viewWillDisappear:(BOOL)animated{
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+//**************************
+//*** Timer Functions
 - (void) updateInterface{
   
   //Collect Signals and update Interface
@@ -81,18 +134,23 @@
   [self.OutX setNeedsDisplay];
   [self.OutY setNeedsDisplay];
 }
+
 - (void)simulate {
   @try {
-    if(!isPaused){
+    if(!self.isPaused){
       [self.schedule handleEvents];
     }
   }
   @catch (CombinatoricLoopException *exception) {
-    isPaused=YES;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CombinatoricError" message:@"Combinatoric Loop detected! Reconfigure and shake to restart" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    self.isPaused=YES;
+    [schedule insertEvents:[clb setJumperFeedBackCF1withPos:1]];
+    [schedule insertEvents:[clb setJumperFeedBackDF2withPos:1]];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CombinatoricError" message:@"Combinatoric Loop detected! Reconfigure and shake to restart. Note: Jumper F1/F2 resettet" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [alert show];
   }
 }
+
+//**************************
 
 //****Navigation Controller
 
@@ -137,8 +195,8 @@
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
   if(motion == UIEventSubtypeMotionShake)
   {
-    if(isPaused){
-      isPaused=NO;
+    if(self.isPaused){
+      self.isPaused=NO;
     }
   }
 }
@@ -250,7 +308,13 @@
       break;
   }
 }
-
+- (BOOL) getSimulationState{
+  return self.isPaused;
+}
+- (void) doContinueSimulation{
+  if(self.isPaused)
+    self.isPaused=NO;
+}
 - (IBAction)tapA:(id)sender {
   self.OutA.On=!self.OutA.On;
   [schedule insertEvents:[clb setDIPWithIndex:0 andValue:self.OutA.On?1:0]];
