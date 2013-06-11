@@ -1,7 +1,7 @@
 //
 //  JumperSegmentedControl.m
 //  CLB
-//
+//  
 //  Created by Daniel Schmidt on 26.03.13.
 //  Copyright (c) 2013 Daniel Schmidt. All rights reserved.
 //
@@ -25,7 +25,8 @@
   [self setDividerImage:[UIImage imageNamed:@"DipMiddle.png"] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
   
 }
-
+// Usually if a SegmentedControl is selected once it cannot be deselected.
+// But we want it to be deselectable for simulating the behaviour of a real Jumper.
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
   lastIndex=self.selectedSegmentIndex;

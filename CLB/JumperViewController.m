@@ -1,7 +1,7 @@
 //
 //  JumperViewController.m
 //  CLB
-//
+//  
 //  Created by Daniel Schmidt on 26.03.13.
 //  Copyright (c) 2013 Daniel Schmidt. All rights reserved.
 //
@@ -17,6 +17,7 @@
 
 @implementation JumperViewController
 @synthesize jumperSetup,jumpers,scvr,backgroundcolor;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,8 +27,70 @@
     return self;
 }
 
+//*** Framework functions
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+  jumpers = [[NSMutableArray alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+  //Add Observer to catch events when Simulationstate changed
+  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(simulationStopped:) name:@"SimulationStopped" object:nil];
+  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(simulationContinued:) name:@"SimulationContinued" object:nil];
+}
+- (void) viewDidAppear:(BOOL)animated{
+  BOOL isSimulationPaused = [self.jumperDelegate getSimulationState];
+  if(isSimulationPaused)
+    self.view.alpha = 0.5;
+  else
+    self.view.alpha = 1.0;
+  
+}
+- (void)viewWillDisappear:(BOOL)animated{
+  [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+//*********************
+//*** Notification Functions
+- (void) simulationStopped : (NSNotification*) notification{
+  if([[notification name] isEqualToString:@"SimulationStopped"]){
+    [self dismissViewControllerAnimated:YES completion:nil];
+  }
+}
+- (void) simulationContinued : (NSNotification*) notification{
+  if([[notification name] isEqualToString:@"SimulationContinued"]){
+    self.view.alpha=1.0;
+  }
+}
+//Value of Segmented Control changed
+- (void)valueChanged:(id)sender{
+  JumperSegmentedControl *jump = (JumperSegmentedControl*) sender;
+  if(jump.lastIndex == jump.selectedSegmentIndex)
+    jump.selectedSegmentIndex=-1;
+  [self.jumperDelegate setJumperValueForJumperWithM:jump.m AndN:jump.n AndValue:jump.selectedSegmentIndex+1 forJumperSetup:jumperSetup];
+}
+- (void)didReceiveMemoryWarning
+{
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
+}
+- (IBAction)done:(id)sender {
+  [self dismissViewControllerAnimated:NO completion:nil];
+}
+//*** Shake Detection
+- (BOOL)canBecomeFirstResponder{
+  return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+  if(motion == UIEventSubtypeMotionShake)
+  {
+    [self.jumperDelegate doContinueSimulation];
+  }
+}
+//*******************
+
 - (void)setupWithJumperSetup:(JumperSetup)setup{
-  //backgroundcolor=[UIColor colorWithRed:19./255. green:204./255. blue:179./255. alpha:1.];
   backgroundcolor=self.mainView.backgroundColor;
   jumperSetup=setup;
   //Create appropriate numbers of segmented controls
@@ -383,17 +446,12 @@
     case JUMPERLEFT:{
       self.navigationItem.title=@"Set Jumper Left";
       JumperSegmentedControl *A,*B,*X,*Y;
-      //JumperSegmentedControl *C,*D;
       A= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:0 andColumn:0];
       B= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:1 andColumn:0];
-      //C= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:2 andColumn:0];
-      //D= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:3 andColumn:0];
       X= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:2 andColumn:0];
       Y= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:3 andColumn:0];
       [A addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
       [B addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-      //[C addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-      //[D addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
       [X addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
       [Y addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
       CGRect r;
@@ -405,17 +463,10 @@
       r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
       B.frame=r;
       r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      /*
-      C.frame=r;
-      r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      D.frame=r;
-      r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      */
       X.frame=r;
       r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
       Y.frame=r;
       UILabel *a,*b,*x,*y;
-      //UILabel *c,*d;
       r.size.width=20;
       r.size.height=20;
       r.origin.x-=20;
@@ -424,37 +475,23 @@
       r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
       b=[[UILabel alloc] initWithFrame:r];
       r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      /*
-      c=[[UILabel alloc] initWithFrame:r];
-      r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      d=[[UILabel alloc] initWithFrame:r];
-      r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      */
       x=[[UILabel alloc] initWithFrame:r];
       r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
       y=[[UILabel alloc] initWithFrame:r];
       a.text=@"A";
       b.text=@"B";
-      //c.text=@"C";
-      //d.text=@"D";
       x.text=@"X";
       y.text=@"Y";
       a.backgroundColor=backgroundcolor;
       b.backgroundColor=backgroundcolor;
-      //c.backgroundColor=backgroundcolor;
-      //d.backgroundColor=backgroundcolor;
       x.backgroundColor=backgroundcolor;
       y.backgroundColor=backgroundcolor;
       [self.mainView addSubview:a];
       [self.mainView addSubview:b];
-      //[self.mainView addSubview:c];
-      //[self.mainView addSubview:d];
       [self.mainView addSubview:x];
       [self.mainView addSubview:y];
       [self.mainView addSubview:A];
       [self.mainView addSubview:B];
-      //[self.mainView addSubview:C];
-      //[self.mainView addSubview:D];
       [self.mainView addSubview:X];
       [self.mainView addSubview:Y];
       break;
@@ -463,16 +500,10 @@
     {
       self.navigationItem.title=@"Set Jumper Top";
       JumperSegmentedControl *C,*D,*X,*Y;
-      //JumperSegmentedControl *A,*B;
-      
-      //A= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:0 andColumn:0];
-      //B= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:1 andColumn:0];
       C= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:0 andColumn:0];
       D= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:1 andColumn:0];
       X= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:2 andColumn:0];
       Y= [[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", nil] withRow:3 andColumn:0];
-      //[A addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-      //[B addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
       [C addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
       [D addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
       [X addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -482,12 +513,6 @@
       r.size.width=INTERFACEJUMPERVIEWJUMPERWIDTH;
       r.origin.x=self.mainView.bounds.size.width/2.-INTERFACEJUMPERVIEWJUMPERWIDTH/2.;
       r.origin.y=self.mainView.frame.size.height/5.;
-      /*
-      A.frame=r;
-      r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      B.frame=r;
-      r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      */
       C.frame=r;
       r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
       D.frame=r;
@@ -501,12 +526,6 @@
       r.size.height=20;
       r.origin.x-=20;
       r.origin.y=self.mainView.frame.size.height/5.+10;
-      /*
-      a=[[UILabel alloc] initWithFrame:r];
-      r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      b=[[UILabel alloc] initWithFrame:r];
-      r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
-      */
       c=[[UILabel alloc] initWithFrame:r];
       r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
       d=[[UILabel alloc] initWithFrame:r];
@@ -514,45 +533,33 @@
       x=[[UILabel alloc] initWithFrame:r];
       r.origin.y+=INTERFACEJUMPERVIEWJUMPERHEIGHT;
       y=[[UILabel alloc] initWithFrame:r];
-      //a.text=@"A";
-      //b.text=@"B";
       c.text=@"C";
       d.text=@"D";
       x.text=@"X";
       y.text=@"Y";
-      //a.backgroundColor=backgroundcolor;
-      //b.backgroundColor=backgroundcolor;
       c.backgroundColor=backgroundcolor;
       d.backgroundColor=backgroundcolor;
       x.backgroundColor=backgroundcolor;
       y.backgroundColor=backgroundcolor;
-      //[self.mainView addSubview:a];
-      //[self.mainView addSubview:b];
       [self.mainView addSubview:c];
       [self.mainView addSubview:d];
       [self.mainView addSubview:x];
       [self.mainView addSubview:y];
-      //[self.mainView addSubview:A];
-      //[self.mainView addSubview:B];
       [self.mainView addSubview:C];
       [self.mainView addSubview:D];
       [self.mainView addSubview:X];
       [self.mainView addSubview:Y];
-
       break;
     }
     case JUMPERCLOCK:{
       self.navigationItem.title=@"Set Clock and Clock Mode";      
-      JumperSegmentedControl *CLKMODE,*CLK;
-//      CLK=[[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"",@"", nil] withRow:0 andColumn:0];
+      JumperSegmentedControl *CLKMODE;
       CLKMODE=[[JumperSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"",@"", nil] withRow:1 andColumn:0];
       CGRect r;
       r.size.width =INTERFACEJUMPERVIEWJUMPERWIDTH;
       r.size.height=INTERFACEJUMPERVIEWJUMPERHEIGHT;
       r.origin.x=self.mainView.bounds.size.width/2-INTERFACEJUMPERVIEWJUMPERWIDTH;
       r.origin.y=self.mainView.bounds.size.height/2-INTERFACEJUMPERVIEWJUMPERHEIGHT/2;
-//      CLK.frame=r;
-//      r.origin.x+=INTERFACEJUMPERVIEWJUMPERWIDTH+20;
       CLKMODE.frame=r;
       r.origin.x=self.mainView.bounds.size.width/2-INTERFACEJUMPERVIEWJUMPERWIDTH;
       r.origin.y-=25;
@@ -574,11 +581,7 @@
           text.text=@"MAN";
         text.backgroundColor=backgroundcolor;
         [self.mainView addSubview:text];
-      }
-//      [CLK setSelectedSegmentIndex:[[jumpers objectAtIndex:0] getPosition]-1];
-//      [CLK addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
-//      [self.mainView addSubview:CLK];
-      
+      }    
       [CLKMODE setSelectedSegmentIndex:[[jumpers objectAtIndex:1] getPosition]-1];
       [CLKMODE addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
       [self.mainView addSubview:CLKMODE];
@@ -590,65 +593,5 @@
       break;
   }
 }
-//*** Framework functions
-- (void)viewDidLoad
-{
- [super viewDidLoad];
-  jumpers = [[NSMutableArray alloc] init];
-}
 
-- (void)viewWillAppear:(BOOL)animated{
-  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(simulationStopped:) name:@"SimulationStopped" object:nil];
-  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(simulationContinued:) name:@"SimulationContinued" object:nil];
-}
-- (void) viewDidAppear:(BOOL)animated{
-  BOOL isSimulationPaused = [self.jumperDelegate getSimulationState];
-  if(isSimulationPaused)
-    self.view.alpha = 0.5;
-  else
-    self.view.alpha = 1.0;
-  
-}
-- (void)viewWillDisappear:(BOOL)animated{
-  [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
-//*********************
-//*** Notification Functions
-- (void) simulationStopped : (NSNotification*) notification{
-  if([[notification name] isEqualToString:@"SimulationStopped"]){
-    [self dismissViewControllerAnimated:YES completion:nil];
-  }
-}
-- (void) simulationContinued : (NSNotification*) notification{
-  if([[notification name] isEqualToString:@"SimulationContinued"]){
-    self.view.alpha=1.0;
-  }
-}
-//*************************
-- (void)valueChanged:(id)sender{
-  JumperSegmentedControl *jump = (JumperSegmentedControl*) sender;
-  if(jump.lastIndex == jump.selectedSegmentIndex)
-    jump.selectedSegmentIndex=-1;
-  [self.jumperDelegate setJumperValueForJumperWithM:jump.m AndN:jump.n AndValue:jump.selectedSegmentIndex+1 forJumperSetup:jumperSetup];
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (IBAction)done:(id)sender {
-  [self dismissViewControllerAnimated:NO completion:nil];
-}
-//*** Shake Detection
-- (BOOL)canBecomeFirstResponder{
-  return YES;
-}
-
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-  if(motion == UIEventSubtypeMotionShake)
-  {
-    [self.jumperDelegate doContinueSimulation];
-  }
-}
-//*******************
 @end

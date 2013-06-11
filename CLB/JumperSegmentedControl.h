@@ -1,7 +1,7 @@
 //
 //  JumperSegmentedControl.h
 //  CLB
-//
+//  *This Subclass of UISegmentedControl abstracts a Jumper*
 //  Created by Daniel Schmidt on 26.03.13.
 //  Copyright (c) 2013 Daniel Schmidt. All rights reserved.
 //

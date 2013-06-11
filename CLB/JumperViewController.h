@@ -1,7 +1,7 @@
 //
 //  JumperViewController.h
 //  CLB
-//
+//  *This Class is responsible for creating and managing the different Jumper Blocks*
 //  Created by Daniel Schmidt on 26.03.13.
 //  Copyright (c) 2013 Daniel Schmidt. All rights reserved.
 //

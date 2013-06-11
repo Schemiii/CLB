@@ -1,7 +1,7 @@
 //
 //  ViewController.h
 //  CLB
-//
+//  *The main VC for the UI
 //  Created by Daniel Schmidt on 20.03.13.
 //  Copyright (c) 2013 Daniel Schmidt. All rights reserved.
 //
