@@ -232,16 +232,16 @@
       arr=self.clb.jumperF2.jumpers;
       break;
     case JUMPERFEEDBACK:
-      arr=[NSArray arrayWithObjects:self.clb.jumperFeedback ,self.clb.jumperSynchronicity, nil];
+      arr=[NSMutableArray arrayWithObjects:self.clb.jumperFeedback ,self.clb.jumperSynchronicity, nil];
       break;
     case JUMPERSYNCF1F2:
       arr=self.clb.jumperSynchronicity;
       break;
     case JUMPERXY:
-      arr=[NSArray arrayWithObjects:self.clb.jumperX.jumpers,self.clb.jumperY.jumpers, nil];
+      arr=[NSMutableArray arrayWithObjects:self.clb.jumperX.jumpers,self.clb.jumperY.jumpers, nil];
       break;
     case JUMPERCLOCK:
-      arr=[NSArray arrayWithObjects:self.clb.jumperClockSelect,self.clb.jumperClockModeSelect, nil];
+      arr=[NSMutableArray arrayWithObjects:self.clb.jumperClockSelect,self.clb.jumperClockModeSelect, nil];
       break;
     case JUMPERLEFT:
       arr=self.clb.inputJumperLeft;

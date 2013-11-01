@@ -90,7 +90,7 @@
 }
 
 - (SignalEvent *)setJumperPositionInRow:(NSInteger)m WithColumn:(NSInteger)n ToPosition:(NSInteger)position{
-  [self.schedule insertSignalEvent:[[[self.jumpers objectAtIndex:m] objectAtIndex:n] setPosition:position]];
+  [self.schedule insertSignalEvent:[(JumperDouble*)[[self.jumpers objectAtIndex:m] objectAtIndex:n] setPosition:position]];
   return [[SignalEvent alloc] init:[self.influences objectAtIndex:0]];
 }
 

@@ -439,19 +439,19 @@
   return [self getInfluencesEvents];
 }
 - (NSMutableArray *)setJumperSynchronicityF1withPos:(int)position{
-  [self.schedule insertSignalEvent:[[jumperSynchronicity objectAtIndex:0]setPosition:position]];
+  [self.schedule insertSignalEvent:[(JumperDouble*)[jumperSynchronicity objectAtIndex:0]setPosition:position]];
   return [self getInfluencesEvents];
 }
 - (NSMutableArray *)setJumperSynchronicityF2withPos:(int)position{
-  [self.schedule insertSignalEvent:[[jumperSynchronicity objectAtIndex:1]setPosition:position]];
+  [self.schedule insertSignalEvent:[(JumperDouble*)[jumperSynchronicity objectAtIndex:1]setPosition:position]];
   return [self getInfluencesEvents];
 }
 - (NSMutableArray *)setJumperFeedBackCF1withPos:(int)position{
-  [self.schedule insertSignalEvent:[[jumperFeedback objectAtIndex:0]setPosition:position]];
+  [self.schedule insertSignalEvent:[(JumperDouble*)[jumperFeedback objectAtIndex:0]setPosition:position]];
   return [self getInfluencesEvents];
 }
 - (NSMutableArray *)setJumperFeedBackDF2withPos:(int)position{
-  [self.schedule insertSignalEvent:[[jumperFeedback objectAtIndex:1]setPosition:position]];
+  [self.schedule insertSignalEvent:[(JumperDouble*)[jumperFeedback objectAtIndex:1]setPosition:position]];
   return [self getInfluencesEvents];
 }
 - (NSMutableArray *)setJumperClockSelectwithPos:(int)position{
@@ -463,11 +463,11 @@
   return [self getInfluencesEvents];
 }
 - (NSMutableArray *)setInputJumperLeftwithIndex:(int)idx andPos:(int)position{
-  [self.schedule insertSignalEvent:[[inputJumperLeft objectAtIndex:idx] setPosition:position]];
+  [self.schedule insertSignalEvent:[(JumperSingle*)[inputJumperLeft objectAtIndex:idx] setPosition:position]];
   return [self getInfluencesEvents];
 }
 - (NSMutableArray *)setInputJumperTopwithIndex:(int)idx andPos:(int)position{
-  [self.schedule insertSignalEvent:[[inputJumperTop objectAtIndex:idx] setPosition:position]];
+  [self.schedule insertSignalEvent:[(JumperSingle*)[inputJumperTop objectAtIndex:idx] setPosition:position]];
   return [self getInfluencesEvents];
 }
 - (NSMutableArray *)setClockButtonValue:(Byte)value{
