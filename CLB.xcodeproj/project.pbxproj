@@ -11,8 +11,10 @@
 		DE3AA4111838B44E00DE9997 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40B1838B44E00DE9997 /* Icon-120.png */; };
 		DE3AA4121838B44E00DE9997 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40C1838B44E00DE9997 /* Icon-Small.png */; };
 		DE3AA4131838B44E00DE9997 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40D1838B44E00DE9997 /* Icon-Small@2x.png */; };
-		DE3AA4141838B44E00DE9997 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40E1838B44E00DE9997 /* Icon.png */; };
 		DE3AA4151838B44E00DE9997 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40F1838B44E00DE9997 /* Icon@2x.png */; };
+		DE3AA41B1838BA7A00DE9997 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA4191838BA7A00DE9997 /* Default-568h@2x.png */; };
+		DE3AA41D1838BB6600DE9997 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA41C1838BB6600DE9997 /* Default-568h.png */; };
+		DE3AA41F1838BB9600DE9997 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA41E1838BB9600DE9997 /* Images-2.xcassets */; };
 		DE4023541823E06C00F9FEF5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4023531823E06C00F9FEF5 /* Icon.png */; };
 		DE5E224A1701A79C007C1ABB /* JumperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5E22491701A79C007C1ABB /* JumperViewController.m */; };
 		DE5E227F1701DB36007C1ABB /* DoubleJumper.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E227D1701DB36007C1ABB /* DoubleJumper.png */; };
@@ -60,8 +62,11 @@
 		DE3AA40B1838B44E00DE9997 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		DE3AA40C1838B44E00DE9997 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		DE3AA40D1838B44E00DE9997 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
-		DE3AA40E1838B44E00DE9997 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		DE3AA40F1838B44E00DE9997 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		DE3AA4161838B70600DE9997 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		DE3AA4191838BA7A00DE9997 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DE3AA41C1838BB6600DE9997 /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h.png"; sourceTree = "<group>"; };
+		DE3AA41E1838BB9600DE9997 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
 		DE4023531823E06C00F9FEF5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		DE5E22481701A79C007C1ABB /* JumperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumperViewController.h; sourceTree = "<group>"; };
 		DE5E22491701A79C007C1ABB /* JumperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumperViewController.m; sourceTree = "<group>"; };
@@ -216,6 +221,7 @@
 				DEE695B716F9C27400CF86F7 /* ViewController.h */,
 				DEE695B816F9C27400CF86F7 /* ViewController.m */,
 				DEC8992D1737AEA700DE256A /* old */,
+				DE3AA41E1838BB9600DE9997 /* Images-2.xcassets */,
 				DEE695A316F9C27400CF86F7 /* Supporting Files */,
 			);
 			path = CLB;
@@ -224,11 +230,13 @@
 		DEE695A316F9C27400CF86F7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DE3AA41C1838BB6600DE9997 /* Default-568h.png */,
+				DE3AA4191838BA7A00DE9997 /* Default-568h@2x.png */,
+				DE3AA4161838B70600DE9997 /* Icon.png */,
 				DE3AA40A1838B44E00DE9997 /* Icon-80.png */,
 				DE3AA40B1838B44E00DE9997 /* Icon-120.png */,
 				DE3AA40C1838B44E00DE9997 /* Icon-Small.png */,
 				DE3AA40D1838B44E00DE9997 /* Icon-Small@2x.png */,
-				DE3AA40E1838B44E00DE9997 /* Icon.png */,
 				DE3AA40F1838B44E00DE9997 /* Icon@2x.png */,
 				DE4023531823E06C00F9FEF5 /* Icon.png */,
 				DEE695A416F9C27400CF86F7 /* CLB-Info.plist */,
@@ -346,14 +354,16 @@
 			files = (
 				DEE695A716F9C27400CF86F7 /* InfoPlist.strings in Resources */,
 				DE3AA4121838B44E00DE9997 /* Icon-Small.png in Resources */,
+				DE3AA41F1838BB9600DE9997 /* Images-2.xcassets in Resources */,
 				DEE695B616F9C27400CF86F7 /* MainStoryboard.storyboard in Resources */,
 				DE3AA4101838B44E00DE9997 /* Icon-80.png in Resources */,
 				DE5E227F1701DB36007C1ABB /* DoubleJumper.png in Resources */,
 				DE5E22801701DB36007C1ABB /* DoubleJumperDipped.png in Resources */,
 				DE4023541823E06C00F9FEF5 /* Icon.png in Resources */,
-				DE3AA4141838B44E00DE9997 /* Icon.png in Resources */,
+				DE3AA41B1838BA7A00DE9997 /* Default-568h@2x.png in Resources */,
 				DE5E22821701DD7D007C1ABB /* DipMiddle.png in Resources */,
 				DE3AA4151838B44E00DE9997 /* Icon@2x.png in Resources */,
+				DE3AA41D1838BB6600DE9997 /* Default-568h.png in Resources */,
 				DEB42437171456A000B8BD9E /* dipbackground.png in Resources */,
 				DE3AA4131838B44E00DE9997 /* Icon-Small@2x.png in Resources */,
 				DE3AA4111838B44E00DE9997 /* Icon-120.png in Resources */,
