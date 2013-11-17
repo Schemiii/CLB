@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE3AA4101838B44E00DE9997 /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40A1838B44E00DE9997 /* Icon-80.png */; };
+		DE3AA4111838B44E00DE9997 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40B1838B44E00DE9997 /* Icon-120.png */; };
+		DE3AA4121838B44E00DE9997 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40C1838B44E00DE9997 /* Icon-Small.png */; };
+		DE3AA4131838B44E00DE9997 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40D1838B44E00DE9997 /* Icon-Small@2x.png */; };
+		DE3AA4141838B44E00DE9997 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40E1838B44E00DE9997 /* Icon.png */; };
+		DE3AA4151838B44E00DE9997 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3AA40F1838B44E00DE9997 /* Icon@2x.png */; };
+		DE4023541823E06C00F9FEF5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4023531823E06C00F9FEF5 /* Icon.png */; };
 		DE5E224A1701A79C007C1ABB /* JumperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5E22491701A79C007C1ABB /* JumperViewController.m */; };
 		DE5E227F1701DB36007C1ABB /* DoubleJumper.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E227D1701DB36007C1ABB /* DoubleJumper.png */; };
 		DE5E22801701DB36007C1ABB /* DoubleJumperDipped.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E227E1701DB36007C1ABB /* DoubleJumperDipped.png */; };
 		DE5E22821701DD7D007C1ABB /* DipMiddle.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E22811701DD7D007C1ABB /* DipMiddle.png */; };
 		DE5E22851701DECE007C1ABB /* JumperSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5E22841701DECD007C1ABB /* JumperSegmentedControl.m */; };
-		DE998E641823CCD3004985AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE998E631823CCD3004985AA /* Images.xcassets */; };
 		DEB424331714470600B8BD9E /* LEDView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB424321714470600B8BD9E /* LEDView.m */; };
 		DEB42437171456A000B8BD9E /* dipbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB42436171456A000B8BD9E /* dipbackground.png */; };
 		DEC8992F1737F75700DE256A /* CLK.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC8992E1737F75600DE256A /* CLK.png */; };
@@ -24,8 +30,6 @@
 		DEE695A716F9C27400CF86F7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE695A516F9C27400CF86F7 /* InfoPlist.strings */; };
 		DEE695A916F9C27400CF86F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE695A816F9C27400CF86F7 /* main.m */; };
 		DEE695AD16F9C27400CF86F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE695AC16F9C27400CF86F7 /* AppDelegate.m */; };
-		DEE695B116F9C27400CF86F7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE695B016F9C27400CF86F7 /* Default@2x.png */; };
-		DEE695B316F9C27400CF86F7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE695B216F9C27400CF86F7 /* Default-568h@2x.png */; };
 		DEE695B616F9C27400CF86F7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE695B416F9C27400CF86F7 /* MainStoryboard.storyboard */; };
 		DEE695B916F9C27400CF86F7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE695B816F9C27400CF86F7 /* ViewController.m */; };
 		DEE695ED16F9C29A00CF86F7 /* AndGate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE695C116F9C29A00CF86F7 /* AndGate.m */; };
@@ -52,6 +56,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE3AA40A1838B44E00DE9997 /* Icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-80.png"; sourceTree = "<group>"; };
+		DE3AA40B1838B44E00DE9997 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
+		DE3AA40C1838B44E00DE9997 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		DE3AA40D1838B44E00DE9997 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		DE3AA40E1838B44E00DE9997 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		DE3AA40F1838B44E00DE9997 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		DE4023531823E06C00F9FEF5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		DE5E22481701A79C007C1ABB /* JumperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumperViewController.h; sourceTree = "<group>"; };
 		DE5E22491701A79C007C1ABB /* JumperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumperViewController.m; sourceTree = "<group>"; };
 		DE5E227D1701DB36007C1ABB /* DoubleJumper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoubleJumper.png; sourceTree = "<group>"; };
@@ -59,7 +70,6 @@
 		DE5E22811701DD7D007C1ABB /* DipMiddle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DipMiddle.png; sourceTree = "<group>"; };
 		DE5E22831701DECD007C1ABB /* JumperSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumperSegmentedControl.h; sourceTree = "<group>"; };
 		DE5E22841701DECD007C1ABB /* JumperSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumperSegmentedControl.m; sourceTree = "<group>"; };
-		DE998E631823CCD3004985AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DEB424311714470600B8BD9E /* LEDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEDView.h; sourceTree = "<group>"; };
 		DEB424321714470600B8BD9E /* LEDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEDView.m; sourceTree = "<group>"; };
 		DEB42436171456A000B8BD9E /* dipbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dipbackground.png; sourceTree = "<group>"; };
@@ -78,9 +88,6 @@
 		DEE695AA16F9C27400CF86F7 /* CLB-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLB-Prefix.pch"; sourceTree = "<group>"; };
 		DEE695AB16F9C27400CF86F7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DEE695AC16F9C27400CF86F7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DEE695AE16F9C27400CF86F7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		DEE695B016F9C27400CF86F7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		DEE695B216F9C27400CF86F7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DEE695B516F9C27400CF86F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		DEE695B716F9C27400CF86F7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DEE695B816F9C27400CF86F7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -209,7 +216,6 @@
 				DEE695B716F9C27400CF86F7 /* ViewController.h */,
 				DEE695B816F9C27400CF86F7 /* ViewController.m */,
 				DEC8992D1737AEA700DE256A /* old */,
-				DE998E631823CCD3004985AA /* Images.xcassets */,
 				DEE695A316F9C27400CF86F7 /* Supporting Files */,
 			);
 			path = CLB;
@@ -218,13 +224,17 @@
 		DEE695A316F9C27400CF86F7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DE3AA40A1838B44E00DE9997 /* Icon-80.png */,
+				DE3AA40B1838B44E00DE9997 /* Icon-120.png */,
+				DE3AA40C1838B44E00DE9997 /* Icon-Small.png */,
+				DE3AA40D1838B44E00DE9997 /* Icon-Small@2x.png */,
+				DE3AA40E1838B44E00DE9997 /* Icon.png */,
+				DE3AA40F1838B44E00DE9997 /* Icon@2x.png */,
+				DE4023531823E06C00F9FEF5 /* Icon.png */,
 				DEE695A416F9C27400CF86F7 /* CLB-Info.plist */,
 				DEE695A516F9C27400CF86F7 /* InfoPlist.strings */,
 				DEE695A816F9C27400CF86F7 /* main.m */,
 				DEE695AA16F9C27400CF86F7 /* CLB-Prefix.pch */,
-				DEE695AE16F9C27400CF86F7 /* Default.png */,
-				DEE695B016F9C27400CF86F7 /* Default@2x.png */,
-				DEE695B216F9C27400CF86F7 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -304,7 +314,7 @@
 		DEE6959116F9C27400CF86F7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Daniel Schmidt";
 				TargetAttributes = {
 					DEE6959816F9C27400CF86F7 = {
@@ -335,14 +345,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEE695A716F9C27400CF86F7 /* InfoPlist.strings in Resources */,
-				DE998E641823CCD3004985AA /* Images.xcassets in Resources */,
-				DEE695B116F9C27400CF86F7 /* Default@2x.png in Resources */,
-				DEE695B316F9C27400CF86F7 /* Default-568h@2x.png in Resources */,
+				DE3AA4121838B44E00DE9997 /* Icon-Small.png in Resources */,
 				DEE695B616F9C27400CF86F7 /* MainStoryboard.storyboard in Resources */,
+				DE3AA4101838B44E00DE9997 /* Icon-80.png in Resources */,
 				DE5E227F1701DB36007C1ABB /* DoubleJumper.png in Resources */,
 				DE5E22801701DB36007C1ABB /* DoubleJumperDipped.png in Resources */,
+				DE4023541823E06C00F9FEF5 /* Icon.png in Resources */,
+				DE3AA4141838B44E00DE9997 /* Icon.png in Resources */,
 				DE5E22821701DD7D007C1ABB /* DipMiddle.png in Resources */,
+				DE3AA4151838B44E00DE9997 /* Icon@2x.png in Resources */,
 				DEB42437171456A000B8BD9E /* dipbackground.png in Resources */,
+				DE3AA4131838B44E00DE9997 /* Icon-Small@2x.png in Resources */,
+				DE3AA4111838B44E00DE9997 /* Icon-120.png in Resources */,
 				DEC8992F1737F75700DE256A /* CLK.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,9 +447,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -457,9 +471,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -473,7 +487,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CLB/CLB-Prefix.pch";
 				INFOPLIST_FILE = "CLB/CLB-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -488,7 +502,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CLB/CLB-Prefix.pch";
 				INFOPLIST_FILE = "CLB/CLB-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
